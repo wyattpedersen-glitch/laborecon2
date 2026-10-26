@@ -1,0 +1,1375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Econ 151 Midterm 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky tab bar over one reading column (~68ch) with full-width tables/graphs where needed.
+   Subject: UC Berkeley labor economics, Midterm 2 (monopsony). A deep teal accent separates this site from the Midterm 1 site; gold marks "exam-critical". */
+:root{
+  --bg:#f7f7f3; --surface:#ffffff; --surface-2:#eef0ee; --line:#d6d9d6;
+  --fg:#1c2230; --muted:#5a6270; --accent:#1d5c63; --accent-fg:#ffffff;
+  --gold:#a8791a; --gold-bg:#fbf3df; --ok:#2f7a4a; --ok-bg:#e6f3ea; --warn:#9b3b2a; --warn-bg:#f8e8e4;
+  --code-bg:#eef0ee;
+  --font-ui:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181e; --surface:#1d2129; --surface-2:#262b35; --line:#3a4150;
+    --fg:#e6e8ec; --muted:#a0a7b4; --accent:#7cc7c9; --accent-fg:#0f1620;
+    --gold:#e2b957; --gold-bg:#2d2715; --ok:#7fcf9a; --ok-bg:#1b2d22; --warn:#f0917c; --warn-bg:#36201b;
+    --code-bg:#262b35; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181e; --surface:#1d2129; --surface-2:#262b35; --line:#3a4150;
+  --fg:#e6e8ec; --muted:#a0a7b4; --accent:#7cc7c9; --accent-fg:#0f1620;
+  --gold:#e2b957; --gold-bg:#2d2715; --ok:#7fcf9a; --ok-bg:#1b2d22; --warn:#f0917c; --warn-bg:#36201b;
+  --code-bg:#262b35; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.55;margin:0}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:0 64px}
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+header.top .wrap{padding-block:18px 0;display:flex;flex-direction:column;gap:10px}
+.masthead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;font-family:var(--font-ui)}
+.masthead h1{font-size:1.25rem;font-weight:600;margin:0;letter-spacing:-0.01em}
+.masthead .meta{color:var(--muted);font-size:.9rem}
+.masthead .meta strong{color:var(--fg);font-weight:600}
+.progress{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;width:100%}
+.progress>div{height:100%;background:var(--accent);width:0%;transition:width .3s}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{padding-block:0;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin}
+nav.tabs button{font-family:var(--font-ui);font-size:.9rem;font-weight:500;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);padding:10px 12px;cursor:pointer;white-space:nowrap}
+nav.tabs button:hover{color:var(--fg)}
+nav.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+nav.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+main .wrap{padding-block:28px 64px}
+section.panel>h2{font-family:var(--font-ui);font-size:1.7rem;font-weight:600;letter-spacing:-0.015em;margin:0 0 6px;text-wrap:balance}
+section.panel>p.lede{font-size:1.1rem;color:var(--muted);margin:0 0 24px;max-width:68ch}
+h3{font-family:var(--font-ui);font-size:1.2rem;font-weight:600;margin:36px 0 10px;letter-spacing:-0.01em;text-wrap:balance}
+h4{font-family:var(--font-ui);font-size:1rem;font-weight:600;margin:22px 0 6px}
+p,li{max-width:72ch}
+p{margin:0 0 12px}
+ul,ol{padding-left:1.3em;margin:0 0 12px}
+li{margin-bottom:4px}
+.eyebrow{font-family:var(--font-ui);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:0 0 14px}
+.card h4{margin-top:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:14px}
+.grid2>*{min-width:0;margin:0}
+.callout{border-left:4px solid var(--gold);background:var(--gold-bg);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+.callout .eyebrow{color:var(--gold)}
+.trap{border-left:4px solid var(--warn);background:var(--warn-bg);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+.trap .eyebrow{color:var(--warn)}
+.key{border-left:4px solid var(--accent);background:var(--surface-2);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-family:var(--font-ui);font-size:.92rem;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;margin:12px 0 18px;border:1px solid var(--line);border-radius:8px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.c,th.c{text-align:center}
+.up{color:var(--ok);font-weight:600}.dn{color:var(--warn);font-weight:600}.z{color:var(--muted);font-weight:600}
+details{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin:0 0 12px}
+details>summary{cursor:pointer;padding:10px 14px;font-family:var(--font-ui);font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:10px}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"Show";color:var(--accent);font-size:.85rem;flex-shrink:0}
+details[open]>summary::after{content:"Hide"}
+details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:8px}
+details>.body{padding:4px 14px 12px;border-top:1px solid var(--line)}
+.problem{margin-bottom:18px}
+.problem .q{background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:8px 8px 0 0;padding:12px 14px}
+.problem .q+details{border-radius:0 0 8px 8px}
+.problem .q .eyebrow{display:block;margin-bottom:4px}
+.sched{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:20px}
+.block{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px}
+.block .time{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);white-space:nowrap;padding-top:3px}
+.block.break{background:var(--surface-2);border-style:dashed}
+.block label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-family:var(--font-ui);font-size:.97rem}
+.block input{margin-top:5px;accent-color:var(--accent);flex-shrink:0;width:16px;height:16px}
+.block .what{font-weight:500}
+.block .how{color:var(--muted);font-size:.9rem;font-family:var(--font-body);margin-top:2px}
+.block.done .what{text-decoration:line-through;color:var(--muted)}
+.btn{font-family:var(--font-ui);font-size:.9rem;font-weight:500;background:var(--accent);color:var(--accent-fg);border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.paper{border:1px solid var(--line);border-radius:8px;background:var(--surface);margin-bottom:16px;overflow:hidden}
+.paper .ph{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between;padding:12px 16px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.paper .ph h4{margin:0;font-size:1.02rem}
+.paper .ph .tag{font-family:var(--font-ui);font-size:.78rem;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 9px;white-space:nowrap}
+.paper .pb{padding:12px 16px}
+.paper dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.paper dt{font-family:var(--font-ui);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600;padding-top:3px}
+.paper dd{margin:0;max-width:70ch}
+.paper dd p{margin-bottom:6px}
+.paper label.know{display:flex;gap:8px;align-items:center;font-family:var(--font-ui);font-size:.88rem;color:var(--muted);margin-top:8px;cursor:pointer}
+.paper label.know input{accent-color:var(--accent)}
+@media (max-width:560px){.paper dl{grid-template-columns:1fr}.paper dt{padding-top:6px}}
+figure{margin:16px 0;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px}
+figure svg{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-family:var(--font-ui);font-size:.85rem;color:var(--muted);padding:6px 4px 0}
+svg text{font-family:var(--font-ui);fill:var(--fg)}
+svg .ax{stroke:var(--fg);stroke-width:1.2;fill:none}
+svg .cur{stroke:var(--accent);stroke-width:2.2;fill:none}
+svg .cur2{stroke:var(--gold);stroke-width:2.2;fill:none}
+svg .cur3{stroke:var(--warn);stroke-width:2.2;fill:none;stroke-dasharray:6 4}
+svg .dash{stroke:var(--muted);stroke-width:1;stroke-dasharray:4 4;fill:none}
+svg .lbl{font-size:12px;fill:var(--muted)}
+svg .pt{fill:var(--fg)}
+.fc-wrap{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.fc-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--font-ui);font-size:.9rem;color:var(--muted)}
+.fc-controls select{font-family:var(--font-ui);font-size:.9rem;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.fc{background:var(--surface);border:1px solid var(--line);border-radius:10px;min-height:220px;padding:22px 24px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:10px;position:relative}
+.fc .side{font-family:var(--font-ui);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);position:absolute;top:12px;left:16px}
+.fc .cat{font-family:var(--font-ui);font-size:.78rem;color:var(--accent);position:absolute;top:12px;right:16px}
+.fc .txt{font-size:1.15rem;line-height:1.45;max-width:70ch}
+.fc .txt.back{font-size:1.02rem}
+.fc:focus-visible{outline:2px solid var(--accent)}
+.cheat{columns:2;column-gap:28px}
+.cheat .card{break-inside:avoid;margin-bottom:14px}
+@media (max-width:720px){.cheat{columns:1}}
+.cheat p,.cheat li{font-size:.95rem}
+code,kbd{font-family:var(--font-mono);font-size:.88em;background:var(--code-bg);padding:1px 5px;border-radius:4px}
+.small{font-size:.9rem;color:var(--muted)}
+.fact-list li{margin-bottom:6px}
+mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%}
+mjx-container[display="true"]{margin:10px 0 !important}
+@media (prefers-reduced-motion: reduce){*{transition:none !important}}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="masthead">
+    <h1>Econ 151 · Midterm 2 study site</h1>
+    <div class="meta">Lectures 6–8 · Exam <strong>Thu Oct 29, 3:30pm</strong> · <span id="progress-text">0 of 0 blocks done</span></div>
+  </div>
+  <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+</div></header>
+<nav class="tabs" aria-label="Sections"><div class="wrap" role="tablist">
+    <button role="tab" data-tab="plan" aria-selected="true">Plan</button>
+    <button role="tab" data-tab="attack">Attack plans</button>
+    <button role="tab" data-tab="drills">Drills</button>
+    <button role="tab" data-tab="l6">L6 Monopsony</button>
+    <button role="tab" data-tab="l7">L7 Wage-setting</button>
+    <button role="tab" data-tab="l8">L8 Regulation</button>
+    <button role="tab" data-tab="papers">12 Papers</button>
+    <button role="tab" data-tab="designs">Designs</button>
+    <button role="tab" data-tab="hw3">HW3 solved</button>
+    <button role="tab" data-tab="practice">Practice exams</button>
+    <button role="tab" data-tab="cards">Flashcards</button>
+    <button role="tab" data-tab="cheat">Cheat sheet</button>
+</div></nav>
+<main><div class="wrap">
+<!-- ============ PLAN ============ -->
+<section class="panel" id="tab-plan" data-panel="plan">
+<h2>Your Monday–Thursday plan</h2>
+<p class="lede">About 24 hours across your blocks (Mon–Wed 9–12 and 3–7, Thu 9–12). Each block follows the same loop: read the attack plan for one question type, drill it with fresh numbers until three in a row, then lock in the papers that go with it. Tick blocks off as you go; the page remembers.</p>
+
+<div class="callout"><span class="eyebrow">What the real Midterm 1 tells us about this exam</span>
+<ul style="margin:6px 0 0">
+<li><strong>Three model questions plus one empirics section.</strong> Midterm 1 had compensating differentials (6 parts), automation (4), signaling (2), then two open "describe a paper that…" prompts.</li>
+<li><strong>You pick the paper.</strong> The prompts were "describe <em>a</em> paper that asks X" and "describe <em>a</em> paper that used IV." So you need a go-to paper for each design and each big question, known cold. The 12 Papers tab ranks them for you.</li>
+<li><strong>Exam models are simpler than the homework.</strong> Expect linear or simple production, uniform or power distributions, and nice numbers.</li>
+<li><strong>Every model question ends with an interpretation part.</strong> For example: "Is this consistent with what we see in the data?" Each topic tab has an "Interpretation questions" box.</li>
+<li><strong>The answer key gave full marks for discussing just the key assumption.</strong> On paper questions, name the design, state the one assumption that matters, and say whether you believe it.</li>
+</ul></div>
+
+<div class="key"><strong>Likely Midterm 2 shape</strong>, given the study guide, HW3 and the practice question: a wage-posting/monopsony model with a minimum wage (like the practice question); a posting-vs-bargaining model (HW3 Q1, the pay-transparency model); maybe a markdown-by-group question (HW3 Q2); then "describe a paper that…" prompts on monopsony, wage-setting, minimum wages, noncompetes or pay transparency.</div>
+
+<h3>Monday, Oct 26 · The markdown and where monopsony comes from</h3>
+<div class="sched">
+  <div class="block"><span class="time">9:00–9:40</span><label><input type="checkbox" data-block="m1"><span><span class="what">The one new move.</span><div class="how">Attack plans tab, sections 1–2 (posting FOC and the markdown). Then L6 tab §1. Say the markdown mnemonic out loud: "eta over eta-plus-one is the slice you keep."</div></span></label></div>
+  <div class="block"><span class="time">9:40–10:40</span><label><input type="checkbox" data-block="m2"><span><span class="what">Markdown drills.</span><div class="how">Drills: <em>Markdown: from elasticity to wage</em>, <em>Elasticity from a supply curve</em>, <em>Hires minus quits (Datta)</em>. Three in a row each.</div></span></label></div>
+  <div class="block"><span class="time">10:40–12:00</span><label><input type="checkbox" data-block="m3"><span><span class="what">L6 evidence: Picky, Blind, Few.</span><div class="how">L6 tab §2–4. Drill <em>HHI and mergers</em>. Papers: Staiger (VA nurses), Datta, Prager &amp; Schmitt. For each, say the three study-guide answers out loud. Designs tab: IV and DiD sections.</div></span></label></div>
+  <div class="block"><span class="time">3:00–4:30</span><label><input type="checkbox" data-block="m4"><span><span class="what">Wage posting, the full model.</span><div class="how">Attack plans §3. Drills: <em>Posting vs competition (CRS)</em>, then <em>Posting vs competition with decreasing returns</em> (the practice question with new numbers). Expect several rounds on the second one.</div></span></label></div>
+  <div class="block break"><span class="time">4:30–4:45</span><label><input type="checkbox" data-block="m5"><span><span class="what">Break</span></span></label></div>
+  <div class="block"><span class="time">4:45–6:00</span><label><input type="checkbox" data-block="m6"><span><span class="what">Bargaining, and posting vs bargaining.</span><div class="how">L7 tab §2–3, Attack plans §4. Drills: <em>Bargaining: who's hired and what they earn</em>, <em>Posting vs bargaining (HW3 Q1)</em>. Memorize "EIS: Employment, Inequality, Spillovers."</div></span></label></div>
+  <div class="block"><span class="time">6:00–7:00</span><label><input type="checkbox" data-block="m7"><span><span class="what">HW3 Q1 and Q2, cold.</span><div class="how">HW3 tab. Work Q1 and Q2 on paper without opening solutions, then check. Anything wrong: do its drill twice more.</div></span></label></div>
+</div>
+
+<h3>Tuesday, Oct 27 · How firms actually set wages, and minimum wages</h3>
+<div class="sched">
+  <div class="block"><span class="time">9:00–10:15</span><label><input type="checkbox" data-block="t1"><span><span class="what">L7 evidence: posting or bargaining?</span><div class="how">L7 tab §4–6. Papers: Cullen et al. (negotiation RCT), Townsend &amp; Allan (migrants), Caldwell &amp; Oehlsen (Uber/Lyft, HW3 Q3). Drill <em>Lottery IV (Townsend &amp; Allan)</em>.</div></span></label></div>
+  <div class="block"><span class="time">10:15–10:30</span><label><input type="checkbox" data-block="t2"><span><span class="what">Break</span></span></label></div>
+  <div class="block"><span class="time">10:30–12:00</span><label><input type="checkbox" data-block="t3"><span><span class="what">Group markdowns and HW3 Q3.</span><div class="how">Drill <em>Markdowns by group (HW3 Q2)</em> until green. HW3 tab Q3: answer a–c out loud, then compare.</div></span></label></div>
+  <div class="block"><span class="time">3:00–4:30</span><label><input type="checkbox" data-block="t4"><span><span class="what">Minimum wages: the model.</span><div class="how">L8 tab §1, Attack plans §5. Drill <em>Minimum wage: competition vs posting</em> until green. Learn the three regions: below the posted wage, between, above competitive.</div></span></label></div>
+  <div class="block break"><span class="time">4:30–4:45</span><label><input type="checkbox" data-block="t5"><span><span class="what">Break</span></span></label></div>
+  <div class="block"><span class="time">4:45–5:30</span><label><input type="checkbox" data-block="t6"><span><span class="what">Minimum-wage papers.</span><div class="how">Papers: Horton (online platform RCT), Cengiz et al. (bunching DiD). Drill <em>Bunching estimator (Cengiz)</em>.</div></span></label></div>
+  <div class="block"><span class="time">5:30–7:00</span><label><input type="checkbox" data-block="t7"><span><span class="what">The official practice question, cold.</span><div class="how">Practice exams tab, part A. Answers stay hidden until you open them. Work it on paper, then grade. Then one round of <em>Posting vs competition with decreasing returns</em> with fresh numbers.</div></span></label></div>
+</div>
+
+<h3>Wednesday, Oct 28 · Noncompetes, pay transparency, full practice</h3>
+<div class="sched">
+  <div class="block"><span class="time">9:00–10:15</span><label><input type="checkbox" data-block="w1"><span><span class="what">Pay transparency model.</span><div class="how">L8 tab §3, Attack plans §6. Drill <em>Pay transparency: Nash bargaining vs posting</em> until green. Papers: Baker et al., Cullen &amp; Pakzad-Hurson.</div></span></label></div>
+  <div class="block"><span class="time">10:15–10:30</span><label><input type="checkbox" data-block="w2"><span><span class="what">Break</span></span></label></div>
+  <div class="block"><span class="time">10:30–12:00</span><label><input type="checkbox" data-block="w3"><span><span class="what">Noncompetes + designs.</span><div class="how">L8 tab §2. Papers: Johnson, Lavetti &amp; Lipsitz; Cowgill, Freiberg &amp; Starr. Then Designs tab top to bottom; drill <em>DiD from a 2×2 table</em>.</div></span></label></div>
+  <div class="block"><span class="time">3:00–4:30</span><label><input type="checkbox" data-block="w4"><span><span class="what">Full practice exam, timed, closed notes.</span><div class="how">Practice exams tab, part B. 80 minutes. Same format as the real Midterm 1.</div></span></label></div>
+  <div class="block break"><span class="time">4:30–4:45</span><label><input type="checkbox" data-block="w5"><span><span class="what">Break</span></span></label></div>
+  <div class="block"><span class="time">4:45–6:00</span><label><input type="checkbox" data-block="w6"><span><span class="what">Grade and patch.</span><div class="how">Open the solutions. For every part you missed, find the matching drill and get three in a row.</div></span></label></div>
+  <div class="block"><span class="time">6:00–7:00</span><label><input type="checkbox" data-block="w7"><span><span class="what">"Describe a paper that…" out loud.</span><div class="how">12 Papers tab, prompt bank at the bottom. Answer each with the template, out loud, no notes. Then Flashcards → Papers, shuffled.</div></span></label></div>
+</div>
+
+<h3>Thursday, Oct 29 · 9am–12pm (exam 3:30pm)</h3>
+<div class="sched">
+  <div class="block"><span class="time">9:00–10:00</span><label><input type="checkbox" data-block="h1"><span><span class="what">Random drills.</span><div class="how">Drills → Random drill. Anything you miss, twice more.</div></span></label></div>
+  <div class="block"><span class="time">10:00–11:00</span><label><input type="checkbox" data-block="h2"><span><span class="what">Papers and interpretation.</span><div class="how">Flashcards (Papers, Interpretation), then go-to papers once each out loud.</div></span></label></div>
+  <div class="block"><span class="time">11:00–12:00</span><label><input type="checkbox" data-block="h3"><span><span class="what">Cheat sheet, five graphs, stop.</span><div class="how">Read the Cheat sheet. Draw from memory: posting (MRPL, MC, supply, posted wage), bargaining, minimum wage under posting, Cengiz bunching, DiD. Then stop studying. Eat, walk, arrive early.</div></span></label></div>
+</div>
+
+<h3>If you fall behind</h3>
+<p>Protect these: the <em>Posting vs competition with decreasing returns</em> drill, the <em>Minimum wage</em> drill, the <em>Posting vs bargaining</em> drill, and your go-to paper for each design (Datta for IV, Prager &amp; Schmitt for DiD, Horton for RCT). That covers the most likely exam questions.</p>
+</section>
+<!-- ============ ATTACK PLANS ============ -->
+<section class="panel" id="tab-attack" data-panel="attack" hidden>
+<h2>Attack plans</h2>
+<p class="lede">Every question type on this exam, as steps to write and the reason each step is there. The "why" is what lets you handle a version you haven't seen. Each plan ends with a mnemonic.</p>
+
+<div class="tbl"><table>
+<tr><th>Mnemonic</th><th>What it unlocks</th></tr>
+<tr><td><strong>"Eta over eta-plus-one is the slice you keep."</strong></td><td>Markdown: \(w=\text{MRPL}\cdot\frac{\eta}{1+\eta}\)</td></tr>
+<tr><td><strong>"Cross at the top, read the wage at the bottom."</strong></td><td>Posting graph: hire where MC = MRPL, pay what the supply curve says</td></tr>
+<tr><td><strong>"Posting is competition with a shrunk A."</strong></td><td>Solve posting by redoing the competitive algebra with \(A\cdot\frac{\eta}{1+\eta}\)</td></tr>
+<tr><td><strong>"EIS: Employment, Inequality, Spillovers."</strong></td><td>The three ways posting and bargaining differ</td></tr>
+<tr><td><strong>"Between the wages, jobs go up."</strong></td><td>Minimum wage between the posted and competitive wage raises employment under posting</td></tr>
+<tr><td><strong>"Transparency turns bargaining into posting: equal, lower, fewer."</strong></td><td>Pay transparency model: inequality falls, average wage falls (if \(\beta&gt;0\)), employment falls</td></tr>
+<tr><td><strong>"Picky, Blind, Few."</strong></td><td>Sources of monopsony: heterogeneous preferences, search frictions, concentration</td></tr>
+<tr><td><strong>"Hires minus quits."</strong></td><td>Long-run elasticity = recruitment elasticity − separation elasticity</td></tr>
+<tr><td><strong>"Weighted elasticities, one wage."</strong></td><td>Common wage for two groups: \(\eta=s_1\eta_1+s_2\eta_2\)</td></tr>
+<tr><td><strong>"Cage versus comp."</strong></td><td>Noncompetes: lower outside options (wages ↓) vs compensating differential (wages ↑)</td></tr>
+</table></div>
+
+<h3>1. Wage posting: the one new move</h3>
+<div class="card"><h4>Steps</h4><ol>
+<li>Write profit <em>as a function of the wage</em>: \(\pi(w)=p\,y\big(L^s(w)\big)-w\,L^s(w)\).</li>
+<li>Differentiate with respect to \(w\): \(p\,y'\,L^{s\prime}-L-w\,L^{s\prime}=0\).</li>
+<li>Divide by \(L^{s\prime}\) and use \(\eta=\frac{w}{L}L^{s\prime}\): \(p\,y'=w+\frac{w}{\eta}=w\big(1+\frac1\eta\big)\).</li>
+<li>So \(w=p\,y'\cdot\dfrac{1}{1+1/\eta}=\text{MRPL}\cdot\dfrac{\eta}{1+\eta}\).</li>
+</ol>
+<p><strong>Why it works.</strong> A competitive firm thinks it can hire as many workers as it wants at the going wage, so its cost of one more worker is just \(w\). A wage-posting firm knows that to attract one more worker it has to raise the wage <em>for everyone it already employs</em>. So its marginal cost of labor is \(w\) plus that raise times all its workers: \(w+L\,w'(L)=w(1+1/\eta)\). It sets that marginal cost equal to MRPL, and pays only what the supply curve requires: less than MRPL.</p>
+<p><strong>How to read η.</strong> \(\eta\) is how many percent of workers leave when the firm cuts pay by 1%. Big \(\eta\) means workers leave easily, so the firm can't push the wage down much. Small \(\eta\) means they stay, so the firm marks the wage down a lot.</p></div>
+<div class="callout"><span class="eyebrow">Mnemonic</span><p style="margin:4px 0 0"><strong>"Eta over eta-plus-one is the slice you keep."</strong> \(\eta=1\): you keep half. \(\eta=4\): 80%. \(\eta=9\): 90%. \(\eta\to\infty\): all of it (competition). Datta's \(\eta\approx4.6\) gives 82%; Staiger's \(\eta\approx0.1\) gives 9%.</p></div>
+
+<figure>
+<svg viewBox="0 0 640 320" role="img" aria-label="Wage posting: the firm hires where marginal cost meets MRPL and pays the wage on the supply curve">
+  <line class="ax" x1="60" y1="280" x2="610" y2="280"/><line class="ax" x1="60" y1="280" x2="60" y2="20"/>
+  <text x="330" y="310" text-anchor="middle" class="lbl">Workers employed L</text>
+  <text x="18" y="150" transform="rotate(-90 18 150)" text-anchor="middle" class="lbl">Wage</text>
+  <line class="cur" x1="60" y1="70" x2="600" y2="120"/><text x="440" y="96" class="lbl">MRPL</text>
+  <path class="cur2" d="M60 280 Q 330 230 600 40"/><text x="520" y="62" class="lbl">Labor supply</text>
+  <path class="cur3" d="M60 280 Q 200 200 330 40"/><text x="150" y="160" class="lbl" style="fill:var(--warn)">Marginal cost of labor</text>
+  <circle class="pt" cx="286" cy="91" r="4"/><circle class="pt" cx="286" cy="213" r="4"/><circle cx="492" cy="110" r="4" style="fill:var(--surface);stroke:var(--fg);stroke-width:1.5"/>
+  <line class="dash" x1="286" y1="91" x2="286" y2="280"/><line class="dash" x1="60" y1="213" x2="286" y2="213"/>
+  <line class="dash" x1="492" y1="110" x2="492" y2="280"/><line class="dash" x1="60" y1="110" x2="492" y2="110"/>
+  <text x="56" y="217" text-anchor="end" class="lbl">w_post</text><text x="56" y="114" text-anchor="end" class="lbl">w_comp</text>
+  <text x="286" y="296" text-anchor="middle" class="lbl">L_post</text><text x="492" y="296" text-anchor="middle" class="lbl">L_comp</text>
+  <text x="296" y="84" class="lbl">① MC = MRPL</text><text x="296" y="230" class="lbl">② pay what supply requires</text>
+</svg>
+<figcaption>"Cross at the top, read the wage at the bottom." Posting hires fewer workers (L_post &lt; L_comp) and pays less than both MRPL and the competitive wage.</figcaption>
+</figure>
+
+<h3>2. Elasticities: where η comes from</h3>
+<div class="grid2">
+<div class="card"><h4>From a supply curve</h4><p>Take logs, read the coefficient on \(\log w\).</p><ul>
+<li>\(L^s=Nw^\alpha\): \(\log L=\log N+\alpha\log w\), so \(\eta=\alpha\), constant.</li>
+<li>\(L^s=N(w-w_H)\) (Midterm 1 Q1): \(\eta=\frac{dL}{dw}\frac{w}{L}=\frac{w}{w-w_H}\). Not constant.</li>
+<li>General: \(\eta=\frac{\partial\log L}{\partial\log w}=L^{s\prime}(w)\cdot\frac{w}{L}\).</li></ul></div>
+<div class="card"><h4>From data</h4><ul>
+<li>Basic: \(\eta=\%\Delta L/\%\Delta w\).</li>
+<li>Long run: \(L=R/S\Rightarrow\eta=\varepsilon_R-\varepsilon_S\). <strong>"Hires minus quits."</strong> Separation elasticity is negative, so subtracting it adds. Datta: \(3-(-1.6)=4.6\).</li>
+<li>Survey (SHED): quit share 47% → 51% after a 1% cut: \(\frac{0.51-0.47}{0.47}=8.5\%\), so the quit elasticity is −8.5.</li>
+<li>IV: \[\eta=\frac{\text{effect of instrument on }\log L}{\text{effect of instrument on }\log w}\].</li></ul></div>
+</div>
+<p><strong>Why OLS of \(\log L\) on \(\log w\) fails.</strong> Firms move along their supply curve only when <em>demand</em> shifts. If the wage variation comes from supply shocks, you trace out demand instead. You need an instrument that moves the firm's wage without moving labor supply directly: a demand shock or an institutional wage change (Staiger, Datta).</p>
+
+<h3>3. Posting vs competition, full model (the practice question)</h3>
+<div class="card"><h4>Steps</h4><ol>
+<li><strong>Supply.</strong> Work iff utility from working ≥ not. Get the reservation wage, then \(L^s(w)=N\,P[w^r_i\le w]\). With \(P[a\le x]=x^\eta\): \(L^s=Nw^\eta\).</li>
+<li><strong>MRPL.</strong> Differentiate production: \(y=AL^\rho\Rightarrow\text{MRPL}=\rho AL^{\rho-1}\).</li>
+<li><strong>Competitive.</strong> \(w=\text{MRPL}(L^s(w))\): \(w=\rho A(Nw^\eta)^{\rho-1}\). Collect powers of \(w\): \(w^{1+\eta-\eta\rho}=\rho AN^{\rho-1}\).</li>
+<li><strong>Posting.</strong> Same equation with MRPL shrunk by \(\frac{\eta}{1+\eta}\): \(w^{1+\eta-\eta\rho}=\frac{\eta}{1+\eta}\rho AN^{\rho-1}\). Or maximize \(A(Nw^\eta)^\rho-wNw^\eta\) over \(w\) directly, as the answer key does; you get the same thing.</li>
+<li><strong>Employment</strong> in either case: plug the wage into \(L^s=Nw^\eta\).</li>
+</ol>
+<p><strong>Why step 4 works.</strong> With constant \(\eta\), the posting condition \(w=\frac{\eta}{1+\eta}\text{MRPL}\) is the competitive condition with \(A\) multiplied by \(\frac{\eta}{1+\eta}\). So \[w_{post}=\big(\frac{\eta}{1+\eta}\big)^{\frac{1}{1+\eta-\eta\rho}}w_{comp}\].</p></div>
+<div class="callout"><span class="eyebrow">Mnemonic</span><p style="margin:4px 0 0"><strong>"Posting is competition with a shrunk A."</strong> Solve the competitive case once, then redo it with \(A\to A\frac{\eta}{1+\eta}\).</p></div>
+<div class="trap"><span class="eyebrow">Traps</span><ul style="margin:6px 0 0">
+<li>Posting chooses the <em>wage</em>, so you differentiate with respect to \(w\), not \(L\). If you choose \(L\) instead, use marginal cost \(w(L)+Lw'(L)\); both routes agree.</li>
+<li>With constant returns (\(y=AL\)), MRPL \(=A\) is constant, so \(w_{post}=A\frac{\eta}{1+\eta}\) immediately.</li>
+<li>Exponents: \(1+\eta-\eta\rho=1-\eta(\rho-1)\). The answer key writes it the second way. Same thing.</li></ul></div>
+
+<h3>4. Bargaining, and posting vs bargaining</h3>
+<div class="card"><h4>Steps</h4><ol>
+<li><strong>Who is hired?</strong> Everyone whose reservation wage is below MRPL. With MRPL \(=1\) and \(v_i\in[0,1]\): everyone. This is the <em>efficient</em> employment level.</li>
+<li><strong>What do they earn?</strong> L7 protocol: their reservation wage, \(w_i=w^r_i\). L8 Nash protocol: \(w_i=\beta\,\text{MRPL}+(1-\beta)w^r_i\).</li>
+<li><strong>Average wage</strong> \(=\int w_i\,f(v)\,dv\). With \(F(x)=x^\alpha\): \(f(v)=\alpha v^{\alpha-1}\) and \(E[v]=\frac{\alpha}{1+\alpha}\).</li>
+<li><strong>Compare to posting</strong>: posting pays everyone \(\frac{\alpha}{1+\alpha}\) and hires \(N(\frac{\alpha}{1+\alpha})^\alpha\).</li>
+</ol>
+<p><strong>Why bargaining is efficient.</strong> The firm pays each worker separately, so hiring one more worker doesn't raise anyone else's pay. Its marginal cost is just that worker's reservation wage, so it hires everyone worth hiring. The firm still takes most of the surplus; it just doesn't need to restrict employment to do so.</p></div>
+<div class="tbl"><table>
+<tr><th>"EIS"</th><th>Posting</th><th>Bargaining</th></tr>
+<tr><td><strong>E</strong>mployment</td><td>Too low: only \(w^r&lt;\text{MRPL}\frac{\eta}{1+\eta}\)</td><td>Efficient: all \(w^r&lt;\text{MRPL}\)</td></tr>
+<tr><td><strong>I</strong>nequality</td><td>One wage for everyone</td><td>Different wage for each worker</td></tr>
+<tr><td><strong>S</strong>pillovers</td><td>Your wage depends on <em>everyone's</em> outside options (through η)</td><td>Your wage depends only on <em>your</em> outside option</td></tr>
+</table></div>
+<p><strong>The spillovers row is the empirical test.</strong> Give one worker a better outside option: under bargaining their wage rises, under posting nothing happens. Give everyone better options: under posting the wage rises. Townsend &amp; Allan found exactly the posting pattern.</p>
+
+<h3>5. Minimum wages</h3>
+<div class="card"><h4>Steps</h4><ol>
+<li>Find \(w_{comp}\) (supply = MRPL) and \(w_{post}\) (markdown).</li>
+<li>Place the minimum wage \(\underline w\) in one of three regions:
+<ul><li><strong>\(\underline w\le w_{post}\)</strong>: doesn't bind anywhere. Nothing changes.</li>
+<li><strong>\(w_{post}&lt;\underline w\le w_{comp}\)</strong>: competitive model unaffected (the wage was already higher). Posting: employment <em>rises</em> to \(L^s(\underline w)\).</li>
+<li><strong>\(\underline w&gt;w_{comp}\)</strong>: both models land on the demand curve: \(\text{MRPL}(L)=\underline w\). Employment falls as \(\underline w\) rises.</li></ul></li>
+<li>Employment-maximizing minimum wage under posting: exactly \(w_{comp}\).</li>
+</ol>
+<p><strong>Why a floor can raise employment.</strong> The posting firm held back hiring because each extra worker meant raising everyone's wage. With a floor, it must pay \(\underline w\) to everyone anyway, so up to the point where supply runs out, an extra worker costs just \(\underline w\). Marginal cost becomes flat, and the firm hires everyone willing to work at \(\underline w\) as long as MRPL \(\ge\underline w\).</p></div>
+<div class="callout"><span class="eyebrow">Mnemonic</span><p style="margin:4px 0 0"><strong>"Between the wages, jobs go up."</strong> Below the posted wage: nothing. Between posted and competitive: jobs up. Above competitive: jobs down. The peak is at the competitive wage.</p></div>
+
+<h3>6. Pay transparency</h3>
+<div class="card"><h4>Steps</h4><ol>
+<li>Before (bargaining): \(w_i=\beta+(1-\beta)v_i\), everyone with \(v_i\le1\) works, average \(=\beta+(1-\beta)\frac{\alpha}{1+\alpha}\).</li>
+<li>After (posting): \(w=\frac{\alpha}{1+\alpha}\) for everyone (\(\eta=\alpha\)), employment \(N\big(\frac{\alpha}{1+\alpha}\big)^\alpha\).</li>
+<li>Compare. Inequality falls to zero; the average wage falls by \(\beta\big(1-\frac{\alpha}{1+\alpha}\big)=\frac{\beta}{1+\alpha}\); employment falls.</li>
+</ol>
+<p><strong>Why transparency means posting.</strong> If everyone can see what everyone else earns, a worker paid less will demand the higher wage, or unequal pay hurts morale and productivity (Breza, Kaur &amp; Shamdasani). Either way the firm ends up paying one wage.</p></div>
+<div class="callout"><span class="eyebrow">Mnemonic</span><p style="margin:4px 0 0"><strong>"Transparency turns bargaining into posting: equal, lower, fewer."</strong> Data: wages fell (Cullen &amp; Pakzad-Hurson: −2%), the gender gap shrank (Baker et al.), but employment didn't fall.</p></div>
+
+<h3>7. Two groups (HW3 Q2)</h3>
+<div class="card"><ul>
+<li><strong>Separate wages:</strong> each group gets its own markdown: \(w_g=\frac{\eta_g}{1+\eta_g}\text{MRPL}\). Less elastic group → lower wage.</li>
+<li><strong>Common wage:</strong> \(L=L_1+L_2\) so \[\eta=\frac{w}{L}(L_1'+L_2')=\frac{L_1}{L}\eta_1+\frac{L_2}{L}\eta_2\]. <strong>"Weighted elasticities, one wage."</strong></li>
+<li><strong>Why women might be less elastic, through "Picky, Blind, Few":</strong> stronger preferences over commute or flexibility (picky), fewer suitable employers nearby (few), job info through narrower networks (blind).</li></ul></div>
+
+<h3>8. HHI</h3>
+<div class="card"><p>\(\text{HHI}=\sum_f s_f^2\). Equal-sized firms: \(\text{HHI}=1/N\), so \(1/\text{HHI}\) is the "equivalent number of firms." Multiply by 10,000 when the paper does. A merger of firms with shares \(s_a,s_b\) raises HHI by \(2s_as_b\).</p></div>
+
+<h3>9. Interpretation parts</h3>
+<div class="card"><ol>
+<li>State what the model predicts and the mechanism in one line.</li>
+<li>State what a paper found.</li>
+<li>Say consistent or not.</li>
+<li>If not, name the assumption that breaks: one firm, constant \(\eta\), CRS, utility linear in consumption (no income effects), firm knows reservation wages, workers can't move between firms…</li>
+</ol>
+<p>Model answer: "Posting predicts that transparency lowers employment because the posted wage is below most reservation wages. Cullen &amp; Pakzad-Hurson find wages fall but employment doesn't. Our model has one firm and an unemployment option; if workers move between firms easily but rarely in and out of work, employment needn't fall."</p></div>
+
+<h3>10. "Describe a paper that…"</h3>
+<div class="key"><strong>Template:</strong> "<em>Setting:</em> who, where, when, what changed. <em>Design:</em> [RCT / IV / DiD], comparing ___ to ___. <em>Key assumption:</em> ___. <em>Plausible?</em> ___ because ___. <em>Found:</em> direction and one number. <em>Model:</em> consistent with ___ because ___."</div>
+</section>
+<!-- ============ DRILLS ============ -->
+<section class="panel" id="tab-drills" data-panel="drills" hidden>
+<h2>Drills</h2>
+<p class="lede">Same question, new numbers, until it's automatic. Each drill is a question type from HW3, the practice question or the lectures. Work it on paper, type your answers, check, then read every step with your numbers, including why each step is there. Three correct in a row and the drill turns green.</p>
+<div class="drill-layout">
+  <aside class="drill-list" id="drill-list" aria-label="Drill types"></aside>
+  <div class="drill-main">
+    <div class="card" id="drill-card">
+      <div class="drill-top"><span class="eyebrow" id="drill-topic"></span><span class="streak" id="drill-streak"></span></div>
+      <h3 id="drill-title" style="margin-top:4px"></h3>
+      <div id="drill-q"></div>
+      <div id="drill-answers" class="answers"></div>
+      <div class="drill-actions">
+        <button class="btn" id="drill-check" type="button">Check</button>
+        <button class="btn ghost" id="drill-steps" type="button">Show steps</button>
+        <button class="btn ghost" id="drill-new" type="button">New numbers</button>
+        <button class="btn ghost" id="drill-random" type="button">Random drill</button>
+      </div>
+      <div id="drill-feedback" class="feedback" hidden></div>
+      <div id="drill-sol" class="solution" hidden></div>
+    </div>
+    <p class="small">Tolerance: within 2% of the exact answer (or ±0.0015 for numbers near zero). Round at the end, not in the middle. Elasticities and logs are natural logs.</p>
+  </div>
+</div>
+</section>
+<style>
+.drill-layout{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+@media (max-width:820px){.drill-layout{grid-template-columns:1fr}}
+.drill-list{display:flex;flex-direction:column;gap:4px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 56px)}
+@media (max-width:820px){.drill-list{position:static;flex-direction:row;flex-wrap:wrap}}
+.drill-list .grp{font-family:var(--font-ui);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin:10px 0 2px}
+@media (max-width:820px){.drill-list .grp{width:100%}}
+.drill-list button{font-family:var(--font-ui);font-size:.88rem;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 10px;cursor:pointer;color:var(--fg);display:flex;justify-content:space-between;gap:8px;align-items:center}
+.drill-list button[aria-current="true"]{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.drill-list button .dot{width:9px;height:9px;border-radius:50%;background:var(--line);flex-shrink:0}
+.drill-list button.ready .dot{background:var(--ok)}
+.drill-list button:focus-visible{outline:2px solid var(--accent)}
+.drill-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.streak{font-family:var(--font-ui);font-size:.85rem;color:var(--muted)}
+.streak.ok{color:var(--ok);font-weight:600}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:14px 0}
+.answers label{display:flex;flex-direction:column;gap:4px;font-family:var(--font-ui);font-size:.9rem}
+.answers input,.answers select{font-family:var(--font-mono);font-size:.95rem;padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+.answers .right input,.answers .right select{border-color:var(--ok);background:var(--ok-bg)}
+.answers .wrong input,.answers .wrong select{border-color:var(--warn);background:var(--warn-bg)}
+.answers .exp{font-size:.8rem;color:var(--muted);min-height:1em}
+.drill-actions{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.feedback{font-family:var(--font-ui);padding:10px 12px;border-radius:6px;margin-bottom:10px}
+.feedback.ok{background:var(--ok-bg);color:var(--ok)}
+.feedback.bad{background:var(--warn-bg);color:var(--warn)}
+.solution{border-top:1px solid var(--line);padding-top:10px}
+.solution ol{padding-left:1.2em}
+.solution li{margin-bottom:8px;max-width:none}
+.solution .why{color:var(--muted);font-size:.93rem}
+#drill-q p{max-width:none}
+.drill-main,.drill-main .card,#drill-q,#drill-sol,.solution li,.solution ol{min-width:0;max-width:100%}
+#drill-sol li,#drill-q li,#drill-q p{overflow-x:auto;overflow-y:hidden}
+#drill-sol mjx-container,#drill-q mjx-container{display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;vertical-align:middle}
+.drill-layout{min-width:0}
+.drill-layout>*{min-width:0}
+</style>
+<script>
+(function(){
+  var R=String.raw;
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  function rnd(lo,hi,step){var n=Math.round((hi-lo)/step);return lo+step*Math.floor(Math.random()*(n+1));}
+  function f(x,d){if(d===undefined)d=3;if(!isFinite(x))return '—';var s=(+x).toFixed(d);if(s.indexOf('.')>=0){s=s.replace(/0+$/,'').replace(/\.$/,'');}return s;}
+  function money(x){return '$'+Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+  function co(x){return x===1?'':String(x);}
+  function pct(x,d){return f(100*x,d===undefined?1:d)+'%';}
+  var ln=Math.log, exp=Math.exp, pow=Math.pow;
+  function num(key,label,val,hint){return {t:'num',key:key,label:label,val:val,hint:hint||''};}
+  function choice(key,label,opts,val){return {t:'choice',key:key,label:label,opts:opts,val:val};}
+
+  var DRILLS=[
+  /* ---------- Markdown & elasticities ---------- */
+  {id:'markdown',grp:'Markdown & elasticities',title:'Markdown: from elasticity to wage',
+   gen:function(){
+     var mode=pick(['fwd','fwd','back']);
+     var m=pick([10,12,16,20,25,30]);
+     if(mode==='fwd'){
+       var e=pick([0.1,0.5,1,1.5,2,3,4,4.6,9]); var s=e/(1+e); var w=m*s;
+       return {q:R`<p>A wage-posting firm has MRPL = ${'$'}${m} per hour and faces a labor supply elasticity \(\eta=${e}\).</p><ol type="a"><li>What share of MRPL do workers receive?</li><li>What wage does the firm post?</li><li>By how many dollars is the wage marked down?</li></ol>`,
+         ans:[num('s','(a) Share of MRPL (e.g. 0.8)',s),num('w','(b) Wage ($)',w),num('gap','(c) MRPL − wage ($)',m-w)],
+         sol:R`<ol><li>Posting FOC: \(w=\text{MRPL}\cdot\frac{1}{1+1/\eta}=\text{MRPL}\cdot\frac{\eta}{1+\eta}\). <span class="why">The firm's marginal cost of a worker is \(w(1+1/\eta)\), because raising the wage to attract one more worker raises it for everyone already there.</span></li><li>Share \(=\frac{${e}}{1+${e}}=${f(s,4)}\). "Eta over eta-plus-one is the slice you keep."</li><li>\(w=${m}\times${f(s,4)}=${'$'}${f(w,2)}\).</li><li>Markdown in dollars: \(${m}-${f(w,2)}=${'$'}${f(m-w,2)}\). ${e<=0.5?'Very inelastic supply means a huge markdown, as in Staiger et al.':e>=4?'Fairly elastic supply means a modest markdown, as in Datta (η ≈ 4.6 → 82%).':''}</li></ol>`};
+     }
+     var e2=pick([1,2,3,4,9]); var w2=Math.round(m*e2/(1+e2)*100)/100; var s2=w2/m; var eta=s2/(1-s2);
+     return {q:R`<p>A wage-posting firm pays ${'$'}${f(w2,2)} per hour to workers whose MRPL is ${'$'}${m}.</p><ol type="a"><li>What share of MRPL do workers receive?</li><li>What labor supply elasticity is the firm facing?</li></ol>`,
+       ans:[num('s','(a) Share of MRPL',s2),num('eta','(b) Elasticity η',eta)],
+       sol:R`<ol><li>Share \(s=w/\text{MRPL}=${f(w2,2)}/${m}=${f(s2,4)}\).</li><li>Invert \(s=\frac{\eta}{1+\eta}\): \(s(1+\eta)=\eta\Rightarrow s=\eta(1-s)\Rightarrow\eta=\frac{s}{1-s}=\frac{${f(s2,4)}}{${f(1-s2,4)}}=${f(eta,3)}\). <span class="why">Useful when a question gives you a wage gap and asks how much market power the firm has.</span></li></ol>`};
+   }},
+  {id:'elast',grp:'Markdown & elasticities',title:'Elasticity from a supply curve',
+   gen:function(){
+     var mode=pick(['power','shift']);
+     if(mode==='power'){
+       var a=pick([0.5,1,2,3]), N=pick([100,500,1000]), w=pick([0.3,0.4,0.5,0.6,0.8]); var L=N*pow(w,a);
+       return {q:R`<p>Workers \(i\in[0,${N}]\) have utility \(C-v_ie\), earn nothing if they don't work, and \(P[v_i\le x]=x^{${a}}\) on \([0,1]\).</p><ol type="a"><li>How many work at wage \(w=${w}\)?</li><li>What is the labor supply elasticity?</li></ol>`,
+         ans:[num('L','(a) Labor supply',L),num('eta','(b) Elasticity',a)],
+         sol:R`<ol><li>Work iff \(w-v_i\ge0\iff v_i\le w\). Reservation wage \(=v_i\).</li><li>\(L^s(w)=N\,P[v_i\le w]=${co(N)}\,w^{${a}}\). At \(w=${w}\): \(${N}\times${w}^{${a}}=${f(L,2)}\).</li><li>Logs: \(\log L=\log ${N}+${a}\log w\). Coefficient on \(\log w\): \(\eta=${a}\), the same at every wage. <span class="why">Power-law supply always has constant elasticity equal to the exponent.</span></li></ol>`};
+     }
+     var N=pick([100,1000]), c=pick([1,2,4]), w=c+pick([0.5,1,2,4]); var L=N*(w-c), eta=w/(w-c);
+     return {q:R`<p>Labor supply to a firm is \(L^s(w)=${N}(w-${c})\) for \(w\ge${c}\) (workers need at least \(${c}\) to leave their outside option, with uniformly spread distaste).</p><ol type="a"><li>Employment at \(w=${w}\)?</li><li>Elasticity of supply at that wage?</li></ol>`,
+       ans:[num('L','(a) Employment',L),num('eta','(b) Elasticity',eta)],
+       sol:R`<ol><li>\(L=${N}(${w}-${c})=${f(L,2)}\).</li><li>\(\eta=\frac{dL}{dw}\cdot\frac{w}{L}=${N}\cdot\frac{${w}}{${N}(${w}-${c})}=\frac{${w}}{${f(w-c,2)}}=${f(eta,3)}\). <span class="why">Not constant: it falls as \(w\) rises. This is the shape of Midterm 1 Q1.4, where the answer was \(\frac{A_G}{A_G-A_H}\).</span></li></ol>`};
+   }},
+  {id:'datta',grp:'Markdown & elasticities',title:'Hires minus quits (Datta) and survey elasticities',
+   gen:function(){
+     var mode=pick(['rs','reg','survey']);
+     if(mode==='rs'){
+       var er=pick([1.5,2,2.5,3,3.5]), es=-pick([0.5,1,1.5,1.6,2]), m=pick([10,15,20,25]); var eta=er-es, s=eta/(1+eta);
+       return {q:R`<p>At a firm the recruitment elasticity is \(${er}\) and the separation elasticity is \(${es}\). MRPL is ${'$'}${m}.</p><ol type="a"><li>Long-run labor supply elasticity?</li><li>Share of MRPL workers receive under wage posting?</li><li>Posted wage?</li></ol>`,
+         ans:[num('eta','(a) η',eta),num('s','(b) Share',s),num('w','(c) Wage ($)',m*s)],
+         sol:R`<ol><li>Steady state: \(L=R/S\), so \(\log L=\log R-\log S\) and \(\eta=\varepsilon_R-\varepsilon_S\). "Hires minus quits."</li><li>\(\eta=${er}-(${es})=${f(eta,2)}\). <span class="why">The separation elasticity is negative (higher pay, fewer quits), so subtracting it adds.</span></li><li>\(s=\frac{${f(eta,2)}}{1+${f(eta,2)}}=${f(s,3)}\); wage \(=${m}\times${f(s,3)}=${'$'}${f(m*s,2)}\).</li></ol>`};
+     }
+     if(mode==='reg'){
+       var b=-pick([0.05,0.08,0.1,0.12]), mean=pick([0.04,0.05,0.08,0.1]); var es2=b/mean;
+       return {q:R`<p>A regression of a monthly separation dummy on log wage (instrumented) gives a coefficient of \(${b}\). The mean monthly separation rate is \(${mean}\).</p><ol type="a"><li>What is the separation elasticity?</li><li>If the recruitment elasticity equals minus the separation elasticity, what is the total elasticity?</li></ol>`,
+         ans:[num('es','(a) Separation elasticity',es2),num('eta','(b) Total η',-2*es2)],
+         sol:R`<ol><li>The coefficient is \(\partial S/\partial\log w\). Elasticity \(=\frac{\partial\log S}{\partial\log w}=\frac{1}{S}\frac{\partial S}{\partial\log w}=\frac{${b}}{${mean}}=${f(es2,3)}\). <span class="why">This is how Datta gets −0.08/0.05 = −1.6.</span></li><li>If \(\varepsilon_R=-\varepsilon_S\), then \(\eta=\varepsilon_R-\varepsilon_S=-2\varepsilon_S=${f(-2*es2,3)}\). Many papers use this shortcut (a recruit from one firm is a quit from another); Datta estimates both halves instead.</li></ol>`};
+     }
+     var p0=pick([0.40,0.45,0.47,0.50]), cut=pick([1,2,5]), p1=Math.round((p0+cut*pick([0.02,0.03,0.04]))*100)/100; var pc=(p1-p0)/p0, el=pc/(-cut/100);
+     return {q:R`<p>In a survey, ${Math.round(p0*100)}% of workers say they're likely to quit if their pay stays the same, and ${Math.round(p1*100)}% if it's cut by ${cut}%.</p><ol type="a"><li>Percent change in the quit probability?</li><li>Implied quit (separation) elasticity?</li><li>Main caveat?</li></ol>`,
+       ans:[num('pc','(a) % change in quit probability (e.g. 8.5)',100*pc,'percent'),num('el','(b) Elasticity',el),choice('cav','(c) Caveat',['Pay cuts are rare, so respondents may read one as a layoff signal','The sample is too small','Quits are not related to wages'],'Pay cuts are rare, so respondents may read one as a layoff signal')],
+       sol:R`<ol><li>\(\frac{${p1}-${p0}}{${p0}}=${f(pc,4)}=${pct(pc)}\).</li><li>Wage change is \(-${cut}\%\): elasticity \(=\frac{${pct(pc)}}{-${cut}\%}=${f(el,2)}\). (Lecture: 47% → 51% for −1% gives −8.5.)</li><li>Hypothetical pay cuts are rare in real life, so respondents may infer something bad about the job.</li></ol>`};
+   }},
+  {id:'staiger',grp:'Markdown & elasticities',title:'Elasticity from a mandated raise (Staiger)',
+   gen:function(){
+     var dw=pick([0.1,0.15,0.2,0.25]), eta=pick([0.1,0.2,0.4,1,2]); var dL=dw*eta, s=eta/(1+eta);
+     return {q:R`<p>A law forces a hospital to raise nurse wages by ${pct(dw,0)}. Over the next two years its nurse employment rises by ${pct(dL,1)}.</p><ol type="a"><li>Implied labor supply elasticity to the hospital?</li><li>Implied share of MRPL that nurses receive?</li><li>Which IV assumption is most doubtful if the law also raised competing hospitals' wages?</li></ol>`,
+       ans:[num('eta','(a) η',eta),num('s','(b) Share of MRPL',s),choice('a','(c) Doubtful assumption',['Exclusion','Relevance','Monotonicity'],'Exclusion')],
+       sol:R`<ol><li>\(\eta=\frac{\%\Delta L}{\%\Delta w}=\frac{${pct(dL,1)}}{${pct(dw,0)}}=${f(eta,2)}\). <span class="why">The mandated raise is an institutional wage change: it moves the firm's wage without being a supply shock, so you trace out the supply curve.</span></li><li>\(\frac{\eta}{1+\eta}=${f(s,3)}\). ${eta<=0.2?'Implausibly small: this is Staiger et al.’s problem.':''}</li><li><strong>Exclusion.</strong> If rivals' wages also rose, the law affects this hospital's employment through rivals' wages too, not just its own; the measured response understates the own-wage elasticity. Also two years is short run.</li></ol>`};
+   }},
+  {id:'hhi',grp:'Markdown & elasticities',title:'HHI and mergers',
+   gen:function(){
+     var sets=[[0.4,0.3,0.2,0.1],[0.5,0.3,0.2],[0.35,0.25,0.25,0.15],[0.6,0.2,0.2],[0.3,0.3,0.2,0.2],[0.25,0.25,0.25,0.25]];
+     var s=pick(sets); var n=s.length; var i=n-2, j=n-1;
+     var H=s.reduce(function(a,x){return a+x*x;},0); var dH=2*s[i]*s[j]; var H2=H+dH;
+     return {q:R`<p>A labor market has ${n} employers with shares ${s.join(', ')}.</p><ol type="a"><li>HHI (as a fraction, 0–1)?</li><li>"Equivalent number" of equal-sized employers?</li><li>The two smallest (${s[i]} and ${s[j]}) merge. New HHI?</li><li>Change in HHI ×10,000?</li></ol>`,
+       ans:[num('H','(a) HHI',H),num('n','(b) Equivalent number',1/H),num('H2','(c) New HHI',H2),num('dH','(d) ΔHHI × 10,000',10000*dH)],
+       sol:R`<ol><li>\(\text{HHI}=\sum s_f^2=${s.map(function(x){return x+'^2';}).join('+')}=${f(H,4)}\).</li><li>Equal shares give \(\text{HHI}=1/N\), so equivalent \(N=1/${f(H,4)}=${f(1/H,2)}\).</li><li>Merging \(s_a,s_b\) replaces \(s_a^2+s_b^2\) with \((s_a+s_b)^2\): change \(=2s_as_b=2(${s[i]})(${s[j]})=${f(dH,4)}\). New HHI \(=${f(H2,4)}\).</li><li>\(\times10{,}000=${f(10000*dH,0)}\). <span class="why">Prager &amp; Schmitt's effects come from the top quartile of ΔHHI (average ≈ 2,764).</span></li></ol>`};
+   }},
+  /* ---------- Wage-setting models ---------- */
+  {id:'postcrs',grp:'Wage-setting models',title:'Posting vs competition (constant returns)',
+   gen:function(){
+     var A=pick([0.6,0.8,1]), a=pick([0.5,1,2,3]), N=pick([100,1000]);
+     var wc=A, Lc=N*pow(A,a), wp=A*a/(1+a), Lp=N*pow(wp,a);
+     return {q:R`<p>Workers \(i\in[0,${N}]\), utility \(C-a_ie\), no other income, \(P[a_i\le x]=x^{${a}}\). One firm with \(y=${co(A)}L\), price 1.</p><ol type="a"><li>Competitive wage and employment?</li><li>Posted wage and employment?</li><li>Posting employment as a share of competitive employment?</li></ol>`,
+       ans:[num('wc','(a) Competitive wage',wc),num('Lc','(a) Competitive employment',Lc),num('wp','(b) Posted wage',wp),num('Lp','(b) Posted employment',Lp),num('r','(c) Ratio',Lp/Lc)],
+       sol:R`<ol><li>Supply: work iff \(w\ge a_i\), so \(L^s=${co(N)}w^{${a}}\) and \(\eta=${a}\).</li><li>MRPL \(=${A}\) at every \(L\) (constant returns). Competitive: \(w=${A}\), \(L=${N}(${A})^{${a}}=${f(Lc,2)}\).</li><li>Posting: \(w=${A}\cdot\frac{${a}}{1+${a}}=${f(wp,4)}\). <span class="why">Or maximize \((${A}-w)\,${co(N)}w^{${a}}\): FOC gives \(${a}(${A}-w)=w\).</span> Employment \(${co(N)}(${f(wp,4)})^{${a}}=${f(Lp,2)}\).</li><li>Ratio \(=\big(\frac{${a}}{1+${a}}\big)^{${a}}=${f(Lp/Lc,4)}\). Posting hires fewer and pays less.</li></ol>`};
+   }},
+  {id:'postdrs',grp:'Wage-setting models',title:'Posting vs competition with decreasing returns (practice Q)',
+   gen:function(){
+     var N,A,r,e,wc,wp,k;
+     for(k=0;k<50;k++){N=pick([1,4]);A=pick([1,1.5,2]);r=pick([0.5,0.75]);e=pick([1,2]);
+       var X=1+e-e*r; wc=pow(r*A*pow(N,r-1),1/X); wp=pow(e/(1+e)*r*A*pow(N,r-1),1/X); if(wc<1)break;}
+     var X=1+e-e*r, Lc=N*pow(wc,e), Lp=N*pow(wp,e);
+     return {q:R`<p>Workers \(i\in[0,${N}]\), utility \(C-a_ie\), \(P[a_i\le x]=x^{${e}}\). Firm: \(y=${co(A)}L^{${r}}\), price 1. (Assume less than full employment.)</p><ol type="a"><li>Competitive wage and employment?</li><li>Posted wage and employment?</li></ol>`,
+       ans:[num('wc','(a) Competitive wage',wc),num('Lc','(a) Competitive employment',Lc),num('wp','(b) Posted wage',wp),num('Lp','(b) Posted employment',Lp)],
+       sol:R`<ol><li>Supply \(L^s=${co(N)}w^{${e}}\) (\(\eta=${e}\)). MRPL \(=${r}\cdot${A}\,L^{${f(r-1,2)}}\).</li><li>Competitive: \(w=${f(r*A,3)}\,(${co(N)}w^{${e}})^{${f(r-1,2)}}\). Collect powers of \(w\): \(w^{1+\eta-\eta\rho}=\rho AN^{\rho-1}\), exponent \(1+${e}-${e}(${r})=${f(X,3)}\), right side \(${f(r*A*pow(N,r-1),4)}\). So \(w=${f(r*A*pow(N,r-1),4)}^{1/${f(X,3)}}=${f(wc,4)}\), and \(L=${co(N)}w^{${e}}=${f(Lc,4)}\).</li><li>Posting: "competition with a shrunk A". Multiply the right side by \(\frac{\eta}{1+\eta}=${f(e/(1+e),4)}\): \(w^{${f(X,3)}}=${f(e/(1+e)*r*A*pow(N,r-1),4)}\Rightarrow w=${f(wp,4)}\), \(L=${f(Lp,4)}\).</li><li><span class="why">Equivalent to the answer key's route: maximize \(AN^\rho w^{\rho\eta}-Nw^{\eta+1}\) over \(w\).</span> Posting: lower wage (${f(wp,3)} &lt; ${f(wc,3)}) and fewer jobs.</li></ol>`};
+   }},
+  {id:'bargain',grp:'Wage-setting models',title:'Bargaining: who is hired and what they earn',
+   gen:function(){
+     var m=pick([1,1,0.8]), a=pick([1,2,3]), b=pick([0,0,0.25,0.5]), v=pick([0.2,0.4,0.6]);
+     if(v>m)v=0.4;
+     var wi=b*m+(1-b)*v, share=pow(m,a), avg=b*m+(1-b)*a*m/(1+a);
+     return {q:R`<p>A firm with constant MRPL \(=${m}\) bargains with each worker. Workers' reservation wages \(v_i\) satisfy \(P[v_i\le x]=x^{${a}}\) on \([0,1]\). The wage is \(w_i=\beta\,\text{MRPL}+(1-\beta)v_i\) with \(\beta=${b}\).</p><ol type="a"><li>Wage of a worker with \(v_i=${v}\)?</li><li>Share of workers employed?</li><li>Average wage among the employed?</li></ol>`,
+       ans:[num('wi','(a) Wage',wi),num('sh','(b) Share employed',share),num('avg','(c) Average wage',avg)],
+       sol:R`<ol><li>\(w_i=${b}(${m})+${f(1-b,2)}(${v})=${f(wi,4)}\). ${b===0?'<span class="why">β = 0 is the L7 protocol: each worker gets exactly their reservation wage.</span>':''}</li><li>Hired iff there is surplus: \(v_i\le\text{MRPL}=${m}\). Share \(=${m}^{${a}}=${f(share,4)}\). <span class="why">This is the efficient level: everyone worth hiring is hired, because paying one worker more doesn't raise anyone else's pay.</span></li><li>Among the employed, \(E[v\mid v\le m]=\frac{\alpha}{1+\alpha}m=${f(a*m/(1+a),4)}\). Average wage \(=\beta m+(1-\beta)\frac{\alpha m}{1+\alpha}=${f(avg,4)}\).</li></ol>`};
+   }},
+  {id:'pvb',grp:'Wage-setting models',title:'Posting vs bargaining (HW3 Q1)',
+   gen:function(){
+     var a=pick([0.5,1,2,3,4]); var wp=a/(1+a), Lp=pow(wp,a);
+     return {q:R`<p>HW3 setup: one firm, \(y=L\) (MRPL = 1), workers with distaste \(P[v_i&lt;x]=x^{${a}}\), utility \(C-ev_i\).</p><ol type="a"><li>Posted wage?</li><li>Employment under posting, as a share of all workers?</li><li>Employment under bargaining (workers paid their reservation wage), as a share?</li><li>Average wage under bargaining?</li></ol>`,
+       ans:[num('wp','(a) Posted wage',wp),num('Lp','(b) Posting employment share',Lp),num('Lb','(c) Bargaining employment share',1),num('avg','(d) Average bargained wage',a/(1+a))],
+       sol:R`<ol><li>\(L^s=Nw^{${a}}\), so \(\eta=${a}\). Posted wage \(=1\cdot\frac{${a}}{1+${a}}=${f(wp,4)}\).</li><li>\(\big(${f(wp,4)}\big)^{${a}}=${f(Lp,4)}\).</li><li>Bargaining hires everyone with \(v_i&lt;1\): share \(=1\) (efficient).</li><li>\(\int_0^1v\cdot\alpha v^{\alpha-1}dv=\frac{\alpha}{1+\alpha}=${f(a/(1+a),4)}\): <strong>the same as the posted wage</strong>. <span class="why">"EIS": same average pay, but bargaining has full Employment, more Inequality, and no Spillovers.</span></li></ol>`};
+   }},
+  {id:'groups',grp:'Wage-setting models',title:'Markdowns by group (HW3 Q2)',
+   gen:function(){
+     var e1=pick([2,3,4,5]), e2=pick([1,1.5,2]); if(e2>=e1)e2=1; var m=pick([10,20,30]), s1=pick([0.1,0.3,0.5,0.7,0.9]);
+     var w1=m*e1/(1+e1), w2=m*e2/(1+e2), e=s1*e1+(1-s1)*e2, w=m*e/(1+e);
+     return {q:R`<p>A CRS firm with MRPL = ${m} employs group 1 (elasticity \(${e1}\)) and group 2 (elasticity \(${e2}\)).</p><ol type="a"><li>Posted wage for group 1 if wages can differ?</li><li>For group 2?</li><li>If one wage must be paid to both and group 1 is ${pct(s1,0)} of employees: overall elasticity?</li><li>That common wage?</li></ol>`,
+       ans:[num('w1','(a) Group 1 wage',w1),num('w2','(b) Group 2 wage',w2),num('e','(c) Overall η',e),num('w','(d) Common wage',w)],
+       sol:R`<ol><li>\(w_1=${m}\cdot\frac{${e1}}{${1+e1}}=${f(w1,3)}\); \(w_2=${m}\cdot\frac{${e2}}{${1+e2}}=${f(w2,3)}\). The less elastic group gets the bigger markdown.</li><li>\(L=L_1+L_2\Rightarrow\eta=\frac{w}{L}(L_1'+L_2')=s_1\eta_1+s_2\eta_2\). "Weighted elasticities, one wage."</li><li>\(\eta=${s1}(${e1})+${f(1-s1,2)}(${e2})=${f(e,3)}\).</li><li>\(w=${m}\cdot\frac{${f(e,3)}}{${f(1+e,3)}}=${f(w,3)}\).</li></ol>`};
+   }},
+  /* ---------- Regulation ---------- */
+  {id:'minwage',grp:'Regulation',title:'Minimum wage: competition vs posting',
+   gen:function(){
+     var N,A,r,e,wc,wp,k,X;
+     for(k=0;k<50;k++){N=pick([1,4]);A=pick([1,1.5,2]);r=pick([0.5,0.75]);e=pick([1,2]);X=1+e-e*r;
+       wc=pow(r*A*pow(N,r-1),1/X); wp=pow(e/(1+e)*r*A*pow(N,r-1),1/X); if(wc<1&&wc-wp>0.06)break;}
+     var Lc=N*pow(wc,e), Lp=N*pow(wp,e);
+     var reg=pick(['A','B','B','C']); var mw;
+     if(reg==='A')mw=Math.floor(wp*0.85*100)/100; else if(reg==='B')mw=Math.round((wp+wc)/2*100)/100; else mw=Math.ceil(wc*1.15*100)/100;
+     reg = mw<=wp?'A':(mw<=wc?'B':'C');
+     var Ld=pow(mw/(r*A),1/(r-1));
+     var Lpost= reg==='A'?Lp:(reg==='B'?N*pow(mw,e):Ld), Lcomp= reg==='C'?Ld:Lc;
+     var regTxt={A:'Below the posted wage',B:'Between posted and competitive wage',C:'Above the competitive wage'};
+     return {q:R`<p>Workers \(i\in[0,${N}]\), \(P[a_i\le x]=x^{${e}}\) (so \(L^s=${co(N)}w^{${e}}\)). Firm: \(y=${co(A)}L^{${r}}\), price 1. Here \(w_{post}=${f(wp,3)}\) and \(w_{comp}=${f(wc,3)}\). A minimum wage of \(${f(mw,2)}\) is imposed.</p><ol type="a"><li>Which region is the minimum wage in?</li><li>Employment under wage posting?</li><li>Employment under the competitive model?</li></ol>`,
+       ans:[choice('reg','(a) Region',[regTxt.A,regTxt.B,regTxt.C],regTxt[reg]),num('Lp','(b) Posting employment',Lpost),num('Lc','(c) Competitive employment',Lcomp)],
+       sol:R`<ol><li>Compare: \(w_{post}=${f(wp,3)}\), \(\underline w=${f(mw,2)}\), \(w_{comp}=${f(wc,3)}\). Region: <strong>${regTxt[reg].toLowerCase()}</strong>.</li>${reg==='A'?R`<li>The floor is below what the posting firm already pays: no effect. Posting employment stays \(${co(N)}(${f(wp,3)})^{${e}}=${f(Lp,4)}\).</li><li>Competitive: also unaffected, \(L=${co(N)}(${f(wc,3)})^{${e}}=${f(Lc,4)}\).</li>`:reg==='B'?R`<li>Posting: the firm must pay \(${f(mw,2)}\) to everyone anyway, so an extra worker costs just \(${f(mw,2)}\), and MRPL is above that up to \(L_{comp}\). It hires everyone willing: \(L=L^s(\underline w)=${co(N)}(${f(mw,2)})^{${e}}=${f(Lpost,4)}\), <strong>up</strong> from \(${f(Lp,4)}\). "Between the wages, jobs go up."</li><li>Competitive: \(\underline w&lt;w_{comp}\), doesn't bind; \(L=${f(Lc,4)}\).</li>`:R`<li>Above the competitive wage, there's excess supply in both models, so the firm hires until \(\text{MRPL}=\underline w\): \(${f(r*A,3)}L^{${f(r-1,2)}}=${f(mw,2)}\Rightarrow L=\big(\frac{${f(mw,2)}}{${f(r*A,3)}}\big)^{1/(${f(r-1,2)})}=${f(Ld,4)}\).</li><li>Same for competitive: \(${f(Ld,4)}\), below \(L_{comp}=${f(Lc,4)}\). Raising the floor further cuts jobs in both models.</li>`}<li><span class="why">Employment under posting peaks at \(\underline w=w_{comp}\).</span></li></ol>`};
+   }},
+  {id:'transp',grp:'Regulation',title:'Pay transparency: Nash bargaining vs posting',
+   gen:function(){
+     var a=pick([1,2,3]), b=pick([0.2,0.3,0.4,0.5]); var avgB=b+(1-b)*a/(1+a), wp=a/(1+a), Lp=pow(wp,a);
+     return {q:R`<p>L8 model: one firm, \(y=L\) (MRPL = 1), \(P[v_i&lt;x]=x^{${a}}\). Before transparency, Nash bargaining with \(\beta=${b}\): \(w_i=\beta+(1-\beta)v_i\). A transparency law forces one posted wage.</p><ol type="a"><li>Average wage before?</li><li>Posted wage after?</li><li>Fall in the average wage?</li><li>Employment share after (before it is 100%)?</li></ol>`,
+       ans:[num('b','(a) Average before',avgB),num('p','(b) Posted wage',wp),num('d','(c) Fall',avgB-wp),num('L','(d) Employment share after',Lp)],
+       sol:R`<ol><li>Before: \(\int_0^1(\beta+(1-\beta)v)\alpha v^{\alpha-1}dv=\beta+(1-\beta)\frac{\alpha}{1+\alpha}=${b}+${f(1-b,2)}\cdot${f(a/(1+a),4)}=${f(avgB,4)}\). Everyone works (each \(w_i\ge v_i\)).</li><li>After: \(\eta=\alpha=${a}\), \(w=\frac{${a}}{${1+a}}=${f(wp,4)}\).</li><li>Fall \(=\frac{\beta}{1+\alpha}=\frac{${b}}{${1+a}}=${f(avgB-wp,4)}\).</li><li>\(\big(${f(wp,4)}\big)^{${a}}=${f(Lp,4)}\). "Equal, lower, fewer." <span class="why">Data: Cullen &amp; Pakzad-Hurson find wages −2% but no employment change; the one-firm model misses that workers can switch firms.</span></li></ol>`};
+   }},
+  {id:'bunch',grp:'Regulation',title:'Bunching estimator (Cengiz et al.)',
+   gen:function(){
+     var bb=pick([0.08,0.087,0.1,0.12]), db=-pick([0.015,0.018,0.02,0.025]), da=Math.round((-db+pick([-0.004,-0.002,0,0.002,0.003]))*1000)/1000, dw=pick([0.05,0.06,0.068,0.08]);
+     var net=da+db, pe=net/bb, el=pe/dw;
+     return {q:R`<p>After a state minimum-wage increase, jobs below the new minimum change by \(\Delta b=${db}\) and jobs just above by \(\Delta a=${da}\) (both as shares of pre-period total employment). Before the increase, ${pct(bb,1)} of jobs paid below the new minimum. Affected workers' wages rose ${pct(dw,1)}.</p><ol type="a"><li>Net employment change (share of total)?</li><li>Percent change in affected employment?</li><li>Employment elasticity with respect to the affected wage?</li></ol>`,
+       ans:[num('n','(a) Net change',net),num('pe','(b) % change in affected employment',100*pe,'percent'),num('el','(c) Elasticity',el)],
+       sol:R`<ol><li>\(\Delta a+\Delta b=${da}+(${db})=${f(net,4)}\). <span class="why">"Missing below = excess above": jobs move up past the minimum rather than disappearing.</span></li><li>Divide by the share affected: \(${f(net,4)}/${bb}=${pct(pe,1)}\).</li><li>\(\frac{\%\Delta L}{\%\Delta w}=\frac{${pct(pe,1)}}{${pct(dw,1)}}=${f(el,3)}\). Small or zero: consistent with wage posting, not with the competitive prediction of job loss.</li></ol>`};
+   }},
+  /* ---------- Designs ---------- */
+  {id:'lottery',grp:'Research designs',title:'Lottery IV (Townsend & Allan)',
+   gen:function(){
+     var pi=pick([0.6,0.65,0.7,0.75]), rs=pick([0.07,0.08,0.1,0.12]), re=pick([-0.02,-0.01,0,0.01]);
+     return {q:R`<p>Migrants on job-tied visas enter a random residence lottery. Winning raises the probability of holding residence by ${f(pi,2)}. Winning raises the probability of switching employers by ${f(rs,2)} and changes log earnings by ${f(re,2)}.</p><ol type="a"><li>IV effect of residence on switching employers?</li><li>IV effect of residence on log earnings?</li><li>Which wage-setting model do these results support?</li></ol>`,
+       ans:[num('s','(a) Effect on switching',rs/pi),num('e','(b) Effect on log earnings',re/pi),choice('m','(c) Model',['Posting','Bargaining'],'Posting')],
+       sol:R`<ol><li>IV = reduced form ÷ first stage: \(${f(rs,2)}/${f(pi,2)}=${f(rs/pi,3)}\). <span class="why">The lottery is random (as good as random ✓); it affects outcomes only by granting residence (exclusion); first stage is strong.</span></li><li>\(${f(re,2)}/${f(pi,2)}=${f(re/pi,3)}\): essentially zero.</li><li>Freedom to move changes behavior (more switching) but not pay. Under bargaining, a better individual outside option raises your wage; under posting it doesn't, because your wage depends on everyone's options. <strong>Posting.</strong></li></ol>`};
+   }},
+  {id:'did',grp:'Research designs',title:'DiD from a 2×2 table (hospital mergers)',
+   gen:function(){
+     var c0=pick([300,320,350]), tr=pick([4,6,8]), gap=pick([-10,5,10,15]), eff=-pick([2,4,5,7]);
+     var t0=c0+gap, c1=c0+tr, t1=t0+tr+eff;
+     return {q:R`<p>Average log nurse wages (×100) at hospitals in markets with a large merger (treated) and markets without (control):</p><div class="tbl"><table><tr><th></th><th>Before</th><th>After</th></tr><tr><td>Merger markets</td><td>${t0}</td><td>${t1}</td></tr><tr><td>No-merger markets</td><td>${c0}</td><td>${c1}</td></tr></table></div><p>Employment didn't change in either group.</p><ol type="a"><li>DiD estimate (log points ×100)?</li><li>What assumption makes it causal?</li><li>Wages fell and employment didn't: which model does that fit?</li></ol>`,
+       ans:[num('d','(a) DiD',eff),choice('a','(b) Assumption',['Parallel trends','Exclusion restriction','Continuity at a cutoff'],'Parallel trends'),choice('m','(c) Model',['Bargaining','Posting'],'Bargaining')],
+       sol:R`<ol><li>\((${t1}-${t0})-(${c1}-${c0})=${t1-t0}-${tr}=${eff}\): a ${-eff}% wage fall.</li><li><strong>Parallel trends</strong>: merger markets would have moved like other markets without the merger. Check pre-trends; worry that mergers target struggling markets.</li><li><strong>Bargaining.</strong> Under posting, more power means a bigger markdown, reached by moving down the supply curve, so employment falls too. Under bargaining, worse outside options cut each worker's wage but everyone worth hiring is still hired. (Prager &amp; Schmitt.)</li></ol>`};
+   }}
+  ];
+
+
+  var store={get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+  var streaks=store.get('e151m2-streaks',{});
+  var cur=null, inst=null, checked=false;
+  var list=document.getElementById('drill-list');
+  var grpSeen={};
+  DRILLS.forEach(function(d){
+    if(!grpSeen[d.grp]){grpSeen[d.grp]=1;var g=document.createElement('div');g.className='grp';g.textContent=d.grp;list.appendChild(g);}
+    var b=document.createElement('button');b.type='button';b.setAttribute('data-id',d.id);b.innerHTML='<span>'+d.title+'</span><span class="dot"></span>';
+    b.addEventListener('click',function(){load(d.id);});list.appendChild(b);
+  });
+  function paintList(){list.querySelectorAll('button').forEach(function(b){var id=b.getAttribute('data-id');b.setAttribute('aria-current',cur&&cur.id===id?'true':'false');b.classList.toggle('ready',(streaks[id]||0)>=3);});}
+  function typeset(el){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+  function load(id){
+    cur=DRILLS.filter(function(d){return d.id===id;})[0]||DRILLS[0];
+    inst=cur.gen(); checked=false;
+    document.getElementById('drill-topic').textContent=cur.grp;
+    document.getElementById('drill-title').textContent=cur.title;
+    document.getElementById('drill-q').innerHTML=inst.q;
+    var A=document.getElementById('drill-answers');A.innerHTML='';
+    inst.ans.forEach(function(a,i){
+      var lab=document.createElement('label');lab.setAttribute('data-i',i);
+      var t=document.createElement('span');t.textContent=a.label;lab.appendChild(t);
+      var inp;
+      if(a.t==='num'){inp=document.createElement('input');inp.type='text';inp.inputMode='decimal';inp.autocomplete='off';inp.placeholder=a.hint||'number';}
+      else{inp=document.createElement('select');var o0=document.createElement('option');o0.value='';o0.textContent='choose…';inp.appendChild(o0);a.opts.forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o;inp.appendChild(op);});}
+      inp.id='drill-in-'+cur.id+'-'+i;lab.appendChild(inp);
+      var ex=document.createElement('span');ex.className='exp';lab.appendChild(ex);
+      A.appendChild(lab);
+    });
+    var fb=document.getElementById('drill-feedback');fb.hidden=true;fb.className='feedback';
+    var sol=document.getElementById('drill-sol');sol.hidden=true;sol.innerHTML='';
+    paintStreak();paintList();typeset(document.getElementById('drill-card'));
+    store.set('e151m2-drill',cur.id);
+  }
+  function paintStreak(){var s=streaks[cur.id]||0;var el=document.getElementById('drill-streak');el.textContent=s>=3?'✓ '+s+' in a row — ready':'Streak: '+s+' / 3';el.className='streak'+(s>=3?' ok':'');}
+  function parse(v){v=String(v).trim().replace(/[$,%\s]/g,'');if(v==='')return NaN;if(/^-?\d+\/\d+$/.test(v)){var p=v.split('/');return (+p[0])/(+p[1]);}return +v;}
+  function check(){
+    if(!inst)return;
+    var allOk=true, any=false;
+    inst.ans.forEach(function(a,i){
+      var lab=document.querySelector('#drill-answers label[data-i="'+i+'"]');var inp=lab.querySelector('input,select');var ex=lab.querySelector('.exp');
+      var ok;
+      if(a.t==='num'){var v=parse(inp.value);if(isNaN(v)){ok=false;}else{any=true;var tol=Math.max(0.02*Math.abs(a.val),0.0015);ok=Math.abs(v-a.val)<=tol;}
+        ex.textContent=ok?'✓':'Answer: '+(Math.abs(a.val)>=1000?f(a.val,0):f(a.val,3))+(a.hint==='percent'?'%':'');}
+      else{ok=inp.value===a.val;if(inp.value)any=true;ex.textContent=ok?'✓':'Answer: '+a.val;}
+      lab.className=ok?'right':'wrong';if(!ok)allOk=false;
+    });
+    var fb=document.getElementById('drill-feedback');fb.hidden=false;
+    if(allOk&&!inst.scored){inst.scored=true;streaks[cur.id]=(streaks[cur.id]||0)+1;store.set('e151m2-streaks',streaks);}
+    else if(!allOk&&any&&!inst.scored&&!inst.missed){inst.missed=true;streaks[cur.id]=0;store.set('e151m2-streaks',streaks);}
+    fb.className='feedback '+(allOk?'ok':'bad');
+    fb.textContent=allOk?'All correct. Hit "New numbers" and do it again without looking.':'Not yet. Open the steps, find the line where yours diverged, then try new numbers.';
+    paintStreak();paintList();
+  }
+  function steps(){var sol=document.getElementById('drill-sol');sol.innerHTML='<span class="eyebrow">Worked steps</span>'+inst.sol;sol.hidden=false;typeset(sol);}
+  document.getElementById('drill-check').addEventListener('click',check);
+  document.getElementById('drill-steps').addEventListener('click',steps);
+  document.getElementById('drill-new').addEventListener('click',function(){load(cur.id);});
+  document.getElementById('drill-random').addEventListener('click',function(){var others=DRILLS.filter(function(d){return !cur||d.id!==cur.id;});load(pick(others).id);});
+  document.getElementById('drill-answers').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();check();}});
+  load(store.get('e151m2-drill',DRILLS[0].id));
+})();
+</script>
+<!-- ============ L6 ============ -->
+<section class="panel" id="tab-l6" data-panel="l6" hidden>
+<h2>Lecture 6 · Do employers have market power?</h2>
+<p class="lede">So far we assumed firms take the wage as given, so the wage equals MRPL. This lecture asks why a firm would ignore that hiring more requires paying more, shows that firms face surprisingly inelastic labor supply, and gives three reasons why.</p>
+
+<h3>1. The markdown</h3>
+<p>A firm that knows it faces an upward-sloping supply curve \(w(L)\) chooses \(L\) to maximize \(p\,y(L)-w(L)L\):</p>
+\[ p\,y'(L)-Lw'(L)-w=0\quad\Rightarrow\quad w=p\,y'(L)-Lw'(L). \]
+<p>Since \(Lw'(L)=w/\eta\) where \(\eta\equiv\frac{\partial L}{\partial w}\frac{w}{L}\):</p>
+\[ w=\underbrace{p\,y'(L)}_{\text{MRPL}}\cdot\underbrace{\frac{1}{1+\frac1\eta}}_{\text{markdown}}. \]
+<ul>
+<li>\(\eta\approx\infty\): \(w\approx\) MRPL. Pretending firms take wages as given is fine.</li>
+<li>\(\eta\approx0\): \(w\) far below MRPL.</li>
+<li><strong>Traditional view:</strong> many firms, so a firm paying slightly less would lose all its workers, so \(\eta\) must be huge. This lecture's evidence says no.</li>
+<li>In labor, "monopsony" doesn't mean one employer; it means each employer has <em>some</em> wage-setting power.</li>
+</ul>
+
+<h3>2. Estimating the elasticity facing a firm</h3>
+<p><strong>Why not OLS of \(\log L_f\) on \(\log w_f\)?</strong> If wage variation reflects supply shocks rather than demand shocks, OLS traces out the demand curve, not supply. You need an instrument that is independent of supply shocks, doesn't itself affect supply, but does move the wage. Two candidates: <strong>labor demand shocks</strong> and <strong>institutional wage changes</strong>. Both L6 papers use the second.</p>
+<div class="grid2">
+<div class="card"><h4>Staiger, Spetz &amp; Phibbs (2010): VA nurses</h4><p>Before 1991 the VA paid nurses on a national scale, so VA hospitals in high-wage markets paid too little (SF: $14.00 vs $16.30). The Nurse Pay Act (1990) tied VA wages to local market wages from April 1991. The 1990 wage gap predicts the VA raise (slope ≈ 0.83). Using that as an instrument, the elasticity of RN supply to a hospital is roughly <strong>0.1</strong>: nurses paid about 9% of MRPL.</p><p><strong>Problems:</strong> (1) exclusion: the mandated raise also pushed up <em>competitors'</em> wages (non-VA coefficient ≈ 0.09–0.34), so you have to model how supply depends on own and rivals' wages; (2) very short run (1990 vs 1992).</p></div>
+<div class="card"><h4>Datta (2024): UK service firm</h4><p>Large UK firm, ≈18,800 workers, 362 establishments. Two instruments: (1) <strong>living-wage accreditation</strong> of local councils whose contracts require the firm to pay the living wage (raises entry-level wages ≈ 6%); (2) whether the posted wage happened to include the mandatory <strong>12.07% holiday top-up</strong>, depending on which HR staffer wrote the posting (recruitment only).</p><p>Recruitment elasticity ≈ 3, separation elasticity ≈ −0.08/0.05 = −1.6, so total ≈ <strong>4.6</strong> and workers get about <strong>80%</strong> of MRPL. Separation elasticity grows with tenure.</p></div>
+</div>
+<div class="key"><strong>Long-run elasticity: "hires minus quits."</strong> \(L_t=L_{t-1}+R_t-S_{t-1}L_{t-1}\). In steady state \(S_tL_t=R_t\), so \(L=R/S\), \(\log L=\log R-\log S\), and
+\[ \frac{\partial\log L}{\partial\log w}=\underbrace{\frac{\partial\log R}{\partial\log w}}_{\text{recruitment}}-\underbrace{\frac{\partial\log S}{\partial\log w}}_{\text{separation}}. \]
+Many papers estimate one half and double it, assuming \(\varepsilon_R=-\varepsilon_S\) (ignoring unemployment, a recruit from one firm is a separation from another). Datta estimates both.</div>
+<div class="card"><h4>Survey route (SHED)</h4><p>"How likely would you be to look for another job or leave if your employer cut your pay by 0 / 1 / 5 / 10%?" Somewhat or very likely: 47% at 0%, 51% at 1%, ≈67% at 5%, ≈76% at 10%. Quit elasticity at 1%: \(\frac{0.51-0.47}{0.47}=8.5\%\) for a −1% wage, so <strong>−8.5</strong>. Caveat: pay cuts are rare, so respondents may read one as a signal of layoffs.</p></div>
+
+<h3>3. Why do employers have market power? "Picky, Blind, Few"</h3>
+<div class="tbl"><table>
+<tr><th>Source</th><th>Mechanism</th><th>Evidence</th></tr>
+<tr><td><strong>Picky</strong>: heterogeneous preferences</td><td>A growing firm hires workers who love the job first, then must pay more for those who like it less. Supply slopes up even with many firms.</td><td>Mas &amp; Pallais: some would take a $2/hr cut to work from home, others wouldn't.</td></tr>
+<tr><td><strong>Blind</strong>: search frictions</td><td>Workers don't know about every job, so each firm competes with only one or two others.</td><td>Over two months, job seekers send ≈14 applications and get ≈2 interviews (BLS). People find jobs through neighbors, family, friends (Bayer, Ross &amp; Topa).</td></tr>
+<tr><td><strong>Few</strong>: concentration</td><td>Some markets really have few employers.</td><td>HHI maps; Prager &amp; Schmitt; Azar et al.</td></tr>
+</table></div>
+
+<h3>4. Concentration</h3>
+<p>\(\text{HHI}=\sum_f s_f^2\): a share-weighted average of shares. Equal shares: \(\text{HHI}=1/N\), the "equivalent number of employers." Often reported ×10,000.</p>
+<div class="card"><h4>Prager &amp; Schmitt (2021): hospital mergers</h4><p>Hospital mergers 2000–2010. Treated: commuting zones with exactly one merger. Control: zones with none. DiD with two-way fixed effects: \[\ln w_{imt}=\delta_i+\tau_t+\alpha\,\text{post}_{mt}+\beta X_{imt}+\varepsilon_{imt}\].</p>
+<ul><li>Average merger: no wage effect. <strong>Top quartile of ΔHHI</strong> (HHI 4,580 → 7,344): skilled wages −4.1%, nursing/pharmacy −7.0%, unskilled ≈ 0.</li>
+<li>No effect for out-of-market mergers (placebo) and no change in local unemployment, population or income.</li>
+<li>Smaller effects where nurse unionization is high.</li>
+<li><strong>Employment didn't fall.</strong> Under posting, a firm with more power cuts wages <em>by moving down its supply curve</em>, so employment should fall. Wages falling without employment falling fits <strong>bargaining</strong> better. Unskilled workers unaffected: they have outside options beyond hospitals.</li></ul>
+<p><strong>Parallel trends worry:</strong> merging hospitals might be in markets already in decline. Pre-trends are mostly flat (unskilled wages wobble pre-merger) and treated hospitals are bigger, in bigger and richer zones.</p></div>
+<div class="card"><h4>Azar, Marinescu, Steinbaum &amp; Taska (2020)</h4><p>HHI from online job postings at 6-digit occupation × commuting zone × quarter: mean unweighted HHI 4,378, but employment-weighted only 1,361. Questions to raise: is that the right market definition, and should concentration be measured in jobs or postings?</p></div>
+
+<div class="trap"><span class="eyebrow">Interpretation questions to be ready for</span><ul style="margin:6px 0 0">
+<li><em>Is Staiger's 0.1 believable?</em> It implies wages at 9% of MRPL. Likely biased down: competitors' wages rose too (exclusion), and two years is short.</li>
+<li><em>Why use an institutional wage change as an instrument?</em> It moves the firm's wage without being a supply shock.</li>
+<li><em>Why did mergers lower nurse wages but not employment?</em> Bargaining, not posting.</li>
+<li><em>Does monopsony require one employer?</em> No: picky preferences and search frictions give market power even with many firms.</li>
+</ul></div>
+</section>
+<!-- ============ L7 ============ -->
+<section class="panel" id="tab-l7" data-panel="l7" hidden>
+<h2>Lecture 7 · Wage-setting</h2>
+<p class="lede">Firms have power to set wages. But how? Either they post one take-it-or-leave-it wage, or they bargain with each worker. The answer changes predictions for efficiency, inequality and policy, and the evidence mostly favors posting.</p>
+
+<h3>1. Common setup</h3>
+<ul>
+<li>One firm \(F\), workers \(i\in[0,N]\), decreasing-returns production \(y_F(L)\), output price \(p\).</li>
+<li>Each worker works at \(F\) or at an outside option paying \(w_O\). Utility \(\log C\) at the outside option and \(\log C-v_i\) at \(F\), with \(v_i\) the relative distaste for \(F\).</li>
+<li>Works at \(F\) iff \[\log w_{i,F}-v_i\ge\log w_O\iff v_i\le\log w_{i,F}-\log w_O\].</li>
+</ul>
+<p class="small">HW3 and the L8 transparency model use a simpler version: utility \(C-ev_i\), no outside income (\(w_O=0\)), so work iff \(w\ge v_i\) and the reservation wage is just \(v_i\).</p>
+
+<h3>2. Model 1: wage posting</h3>
+<p>The firm picks one wage; workers accept or reject. Supply is \(L^s(w)=N\,P[v_i\le\log w-\log w_O]\).</p>
+\[ \max_w\ p\,y_F(L^s(w))-wL^s(w)\ \Rightarrow\ p\,y_F'L^{s\prime}-wL^{s\prime}-L=0. \]
+<p>Substitute \(L^{s\prime}=\eta L/w\), divide by \(\eta L\), multiply by \(w\): \(p\,y_F'-w-\frac{w}{\eta}=0\), so</p>
+\[ w=p\,y_F'(L)\cdot\frac{1}{1+\frac1\eta}. \]
+<p>Same markdown as L6. Graph: hire where marginal cost = MRPL, pay what the supply curve requires (see Attack plans §1).</p>
+
+<h3>3. Model 2: bargaining</h3>
+<ul>
+<li>The firm's willingness to pay for each worker is MRPL \(p\,y_F'\). Worker \(i\) is willing at their reservation wage \(w^r_i\).</li>
+<li>Workers with \(w^r_i&gt;p\,y_F'\) are never employed. For the rest, a bargaining protocol splits the surplus \(p\,y_F'-w^r_i\).</li>
+<li><strong>L7 protocol:</strong> the firm keeps all the surplus; each worker gets exactly \(w^r_i\). Think of a firm that knows each worker's reservation wage and makes a targeted offer just big enough.</li>
+<li>Graph: bargained wages trace the distribution of reservation wages up to MRPL; employment is where supply hits MRPL.</li>
+</ul>
+<figure>
+<svg viewBox="0 0 640 300" role="img" aria-label="Bargaining: each worker paid their reservation wage; employment extends to where reservation wages reach MRPL">
+  <line class="ax" x1="60" y1="260" x2="610" y2="260"/><line class="ax" x1="60" y1="260" x2="60" y2="20"/>
+  <text x="330" y="292" text-anchor="middle" class="lbl">Workers employed</text>
+  <text x="18" y="140" transform="rotate(-90 18 140)" text-anchor="middle" class="lbl">Wage</text>
+  <line class="cur" x1="60" y1="70" x2="600" y2="110"/><text x="80" y="62" class="lbl">MRPL</text>
+  <path class="cur2" d="M60 260 Q 330 210 600 40"/><text x="470" y="160" class="lbl">Reservation wages (labor supply)</text>
+  <path d="M60 260 Q 270 215 455 98" style="stroke:var(--warn);stroke-width:4;fill:none;opacity:.55"/>
+  <text x="150" y="205" class="lbl" style="fill:var(--warn)">Bargained wages = reservation wages</text>
+  <line class="dash" x1="455" y1="98" x2="455" y2="260"/><text x="455" y="276" text-anchor="middle" class="lbl">Bargaining employment (efficient)</text>
+</svg>
+<figcaption>Bargaining: every worker with a reservation wage below MRPL is hired, each at their own reservation wage. The firm keeps the surplus but doesn't restrict employment.</figcaption>
+</figure>
+
+<h3>4. Posting vs bargaining: "EIS"</h3>
+<div class="tbl"><table>
+<tr><th></th><th>Posting</th><th>Bargaining</th></tr>
+<tr><td><strong>Employment / efficiency</strong></td><td>Only \(w^r_i&lt;p\,y_F'\frac{1}{1+1/\eta}\) hired: inefficiently low</td><td>All \(w^r_i&lt;p\,y_F'\) hired: efficient</td></tr>
+<tr><td><strong>Inequality</strong></td><td>One wage</td><td>Different workers, different wages</td></tr>
+<tr><td><strong>Spillovers</strong></td><td>Wage depends on everyone's reservation wages (via η)</td><td>Wage depends only on own reservation wage</td></tr>
+</table></div>
+<p>Both pay less than MRPL. Seeing different wages for workers at one firm doesn't prove bargaining: are they really doing the same job?</p>
+
+<h3>5. Evidence: how are wages set?</h3>
+<div class="grid2">
+<div class="card"><h4>Surveys</h4><p><strong>Hall &amp; Krueger (2008):</strong> 36% bargained over pay, 32% knew pay exactly at interview, 47% said the employer learned their previous pay. <strong>Caldwell &amp; Harmon:</strong> bargaining ≈ 20% in manual, assembly, service and office jobs; ≈ 40–60% for craftsmen, technicians, professionals and managers.</p><p><strong>Limits:</strong> is the bargaining quantitatively important? And many firms differentiate pay without explicit bargaining: 78% of German firms pay equally productive workers in the same position differently (Caldwell, Haegele &amp; Heining).</p></div>
+<div class="card"><h4>Cullen, Pakzad-Hurson &amp; Perez-Truglia (2025)</h4><p>RCT on levels.fyi users looking for jobs (tech). Treatment: a message that 42% negotiate and 85% of those succeed. Many had low priors about both.</p><p>Intent to negotiate +3.6pp; actually negotiated +7.3pp (53.7% → 61.0%); improved offer +5.7pp. Larger for low-prior and for women (negotiated +16.8pp). About half who negotiated got more; average raise among them 13.9%; average wage effect of the treatment <strong>≈ +1%</strong>. Negotiation coaching had no effect. <strong>So bargaining exists and matters a bit, especially in tech.</strong></p></div>
+</div>
+<div class="card"><h4>Townsend &amp; Allan (2025): migrants in New Zealand</h4><p>Essential Skills visas tie a migrant to one job, so a shock to restrictions is a shock to outside options. Two tests:</p>
+<ol><li><strong>Individual shock.</strong> Migrants who move from a restricted visa to residence switch employers much more (monthly new-employer rate ≈ 1% → 3%), but their earnings track same-firm, same-occupation controls exactly. Hours unchanged (rules out better conditions instead of pay). To rule out applying for residence in anticipation of individual shocks: <strong>visa lotteries</strong> (Pacific Access, Samoan Quota): winning raises residence by ≈ 70pp and employer switching by ≈ 10–14pp, with no earnings gain.</li>
+<li><strong>Market shock.</strong> When an occupation is put on the Essential Skills in Demand list, all migrants in it become unrestricted. DiD: earnings +2.8% (±2.0), for migrants <em>and residents</em>; more workers at new firms; no change in matched Australian occupations. Assumption: list changes are independent of labor demand/supply changes (policymakers do respond to shocks, but some changes were for other reasons, e.g. occupation size).</li></ol>
+<p><strong>Conclusion: one worker's outside option doesn't move their wage; everyone's does. That's posting.</strong> Mnemonic: <em>"Me alone: no raise. All of us: raise."</em></p></div>
+<div class="card"><h4>Caldwell &amp; Oehlsen (2026): Uber and Lyft (HW3 Q3, not in slides)</h4><p>Uber randomly offered subsets of drivers higher pay rates; some drivers could also drive for Lyft. Randomized offers instrument realized hourly earnings (realized pay depends on when and where drivers choose to work). Access to one competing platform <strong>nearly doubles</strong> the elasticity of supply to Uber, cutting the implied markdown from <strong>68% to about 50%</strong>. Women are about twice as elastic as men <em>to the market</em>, but no less elastic <em>to their employer</em>.</p>
+<p class="small">Source: the paper's NBER abstract, as these details weren't in your slides. Cross-check against your HW3 answers.</p></div>
+
+<h3>6. Which model is right?</h3>
+<ul><li>Probably varies by country, occupation and firm, but for most workers <strong>posting</strong> fits better (Townsend &amp; Allan; low bargaining shares in surveys).</li>
+<li>Hospital nurses (Prager &amp; Schmitt) and tech workers (Cullen et al.) show bargaining-like features.</li>
+<li><strong>Why don't firms bargain more?</strong> Our protocol (worker gets exactly their reservation wage) is the most favorable to firms; other protocols make bargaining less attractive. Firms probably don't know reservation wages. Pay inequality lowers productivity (Breza, Kaur &amp; Shamdasani).</li></ul>
+
+<div class="trap"><span class="eyebrow">Interpretation questions to be ready for</span><ul style="margin:6px 0 0">
+<li><em>Which model does Townsend &amp; Allan support?</em> Posting: individual outside options don't matter, market-wide ones do.</li>
+<li><em>Which does Prager &amp; Schmitt support?</em> Bargaining: wages fell without employment falling.</li>
+<li><em>Does wage dispersion within a firm reject posting?</em> Not necessarily: different jobs, different productivity.</li>
+<li><em>Is bargaining efficient?</em> Yes, under our protocol: all workers with \(w^r&lt;\) MRPL are hired. Posting isn't.</li>
+<li><em>HW3 Q3c: is the gender pay gap due to different markdowns?</em> Caldwell &amp; Oehlsen find women no less elastic to their employer, so different markdowns don't explain it there.</li>
+</ul></div>
+</section>
+<!-- ============ L8 ============ -->
+<section class="panel" id="tab-l8" data-panel="l8" hidden>
+<h2>Lecture 8 · Labor market regulation</h2>
+<p class="lede">The wage-setting models applied to three regulations: minimum wages, noncompete bans and pay transparency. For each, theory first, then evidence.</p>
+
+<h3>1. Minimum wages</h3>
+<p>The real federal minimum wage fell from ≈$15 (1968, in 2026 $) to ≈$7.25 today; the population-weighted average across states is ≈$12, because states raised their own. The main argument against minimum wages is that they cut employment. True in the competitive model; not necessarily with market power.</p>
+<div class="grid2">
+<div class="card"><h4>Competitive</h4><p>\(w^{comp}\ge\underline w\) and \(L^{comp}=\arg\max_L\{y_f(L)-w^{comp}L\}\); markets clear unless the minimum binds. A binding minimum puts you on the MRPL curve, so <strong>raising it lowers employment</strong>.</p></div>
+<div class="card"><h4>Wage posting</h4><p>\(\max_{w,L}\{y_f(L)-wL\}\) s.t. \(L\le L^s(w)\) and \(w\ge\underline w\). A minimum between the posted and competitive wage flattens marginal cost, so the firm hires everyone willing at \(\underline w\). <strong>A higher minimum can raise employment.</strong></p></div>
+</div>
+<figure>
+<svg viewBox="0 0 640 320" role="img" aria-label="Minimum wage under wage posting: a floor between the posted and competitive wage raises employment to the supply curve">
+  <line class="ax" x1="60" y1="280" x2="610" y2="280"/><line class="ax" x1="60" y1="280" x2="60" y2="20"/>
+  <text x="330" y="310" text-anchor="middle" class="lbl">Workers employed</text>
+  <text x="18" y="150" transform="rotate(-90 18 150)" text-anchor="middle" class="lbl">Wage</text>
+  <line class="cur" x1="60" y1="70" x2="600" y2="120"/><text x="530" y="108" class="lbl">MRPL</text>
+  <path class="cur2" d="M60 280 Q 330 230 600 40"/><text x="520" y="60" class="lbl">Labor supply</text>
+  <path class="cur3" d="M60 280 Q 200 200 330 40"/><text x="120" y="182" class="lbl" style="fill:var(--warn)">MC</text>
+  <line x1="60" y1="160" x2="600" y2="160" style="stroke:var(--accent);stroke-width:2"/><text x="440" y="154" class="lbl" style="fill:var(--accent)">Minimum wage</text>
+  <line class="dash" x1="60" y1="213" x2="286" y2="213"/><text x="56" y="217" text-anchor="end" class="lbl">w_post</text>
+  <line class="dash" x1="286" y1="213" x2="286" y2="280"/><text x="286" y="296" text-anchor="middle" class="lbl">L_post</text>
+  <circle class="pt" cx="403" cy="160" r="4"/><line class="dash" x1="403" y1="160" x2="403" y2="280"/><text x="403" y="296" text-anchor="middle" class="lbl">L with floor</text>
+  <line class="dash" x1="492" y1="110" x2="492" y2="280"/><text x="492" y="296" text-anchor="middle" class="lbl">L_comp</text>
+</svg>
+<figcaption>"Between the wages, jobs go up." With the floor, the firm pays the minimum to everyone anyway, so it hires along the supply curve until MRPL falls to the floor. Push the floor above the competitive wage and employment starts falling.</figcaption>
+</figure>
+<p><strong>Takeaway:</strong> the employment effect is theoretically ambiguous. It depends on whether employers have market power and how high the minimum is.</p>
+
+<div class="grid2">
+<div class="card"><h4>Horton (2025 AER): online platform RCT</h4><p>Gig platform where workers bid and firms pick. Minimum bids of $2, $3 or $4/hour, <strong>randomized across firms</strong>. Hiring fell (≈ −6% at $4), only about <strong>10% of what you'd expect</strong> if every job below the minimum vanished. Hours fell up to ≈25%. Wages among hires +18% to +44%. Firms <strong>substituted toward more productive workers</strong>: hires had higher past wages and earnings, more US hires, fewer from Bangladesh.</p></div>
+<div class="card"><h4>Cengiz, Dube, Lindner &amp; Zipperer (2019 QJE)</h4><p>DiD across <strong>138 state minimum-wage increases</strong>, 1979–2016. Compare employment counts by wage bin just below and just above the new minimum, against counterfactual states. Missing jobs below \(\Delta b=-1.8\%\) of employment, excess jobs just above \(\Delta a=+2.1\%\): <strong>no net job loss</strong> (affected employment +2.8%, n.s.; affected wages +6.8%). Flat pre-trends; ≈40% of the wage gain is spillovers above the minimum. Same for teens, less-educated workers and tradeable sectors.</p></div>
+</div>
+<figure>
+<svg viewBox="0 0 640 260" role="img" aria-label="Bunching: jobs missing just below the new minimum reappear just above it">
+  <line class="ax" x1="60" y1="210" x2="610" y2="210"/><line class="ax" x1="60" y1="210" x2="60" y2="20"/>
+  <text x="330" y="245" text-anchor="middle" class="lbl">Wage</text><text x="18" y="115" transform="rotate(-90 18 115)" text-anchor="middle" class="lbl">Number of workers</text>
+  <path d="M70 210 C 150 150, 230 90, 330 80 C 430 75, 520 140, 600 205" style="stroke:var(--warn);stroke-width:2;fill:none;stroke-dasharray:6 4"/>
+  <path d="M230 210 L 230 30 L 260 30 C 280 70, 300 78, 330 80 C 430 75, 520 140, 600 205" style="stroke:var(--accent);stroke-width:2.2;fill:none"/>
+  <path d="M70 210 C 150 150, 200 112, 230 104 L 230 210 Z" style="fill:var(--warn);opacity:.18"/>
+  <path d="M230 104 L 230 30 L 260 30 C 280 70, 300 78, 330 80 C 300 82, 260 90, 230 104 Z" style="fill:var(--accent);opacity:.2"/>
+  <line class="dash" x1="230" y1="20" x2="230" y2="210"/><text x="230" y="226" text-anchor="middle" class="lbl">MW</text>
+  <text x="120" y="190" class="lbl" style="fill:var(--warn)">Missing jobs below (Δb)</text><text x="268" y="44" class="lbl" style="fill:var(--accent)">Excess jobs above (Δa)</text>
+  <text x="420" y="60" class="lbl">Δemployment = Δa + Δb ≈ 0</text>
+</svg>
+<figcaption>Cengiz et al.'s bunching estimator. Jobs below the new minimum disappear and an almost equal number appear just above it.</figcaption>
+</figure>
+<p><strong>Which model?</strong> No job loss fits <strong>posting</strong>. But posting says output rises, so prices should fall; Harasztosi &amp; Lindner find firms pass much of the cost into <em>higher</em> prices. So maybe the competitive model with very inelastic labor demand. Dustmann et al. find minimum wages shift workers from small to large firms (perhaps large firms have more power). US minimums probably have small or zero employment effects; city minimums may bite more (firms can cross city lines); a high enough minimum must cut jobs; the ideal level varies by sector (other countries use sectoral bargaining).</p>
+<p><strong>Parallel trends here means:</strong> employment in each wage bin in states raising their minimum would have evolved like employment in that bin in other states.</p>
+
+<h3>2. Noncompete agreements</h3>
+<p>Contracts that bar working for competitors after leaving. Justified as protecting customers and encouraging firm-sponsored training. Unenforceable in many states; California now bans even including them. About 18% of US workers have one (Starr, Prescott &amp; Bishara). Even unpaid interns get asked to sign them.</p>
+<div class="key"><strong>"Cage versus comp."</strong> <em>Cage:</em> a noncompete shrinks outside options and so reservation wages; under posting or bargaining, wages fall. <em>Comp:</em> if workers foresee lower future earnings, they demand more to sign (a compensating differential); wages rise. Evidence says the cage wins.</div>
+<div class="grid2">
+<div class="card"><h4>Johnson, Lavetti &amp; Lipsitz (2025 JPE)</h4><p>State-by-year 0–1 enforceability score built from court rulings and laws (e.g. Pennsylvania 1995: enforceable even if fired, +0.1). Many changes in both directions. DiD. Changes are uncorrelated with state politics and economic conditions. Moving from 0 to 1 cuts earnings ≈ <strong>11%</strong> (event study: growing over 5 years, flat pre-trends); bigger for more-educated and high-use occupations and industries; job-to-job mobility falls in high-use industries; spillovers across state borders. Also: less innovation (fewer knowledge flows), weak evidence of more training.</p></div>
+<div class="card"><h4>Cowgill, Freiberg &amp; Starr (2026 QJE)</h4><p>Field experiment with ≈14,000 freelance recruiters offered short-term resume-review work by Firm A. Randomized the wage ($25 vs $65) and whether the contract had a <strong>salient</strong>, <strong>hidden</strong> or <strong>no</strong> noncompete (15,000 got no offer). Salient: fewer opened (−7.9pp) and signed (−2.3pp), worth ≈$15–44 in wage terms; hidden: little effect (most spent seconds on that page). Later, Firm B tried to hire the same workers: noncompetes cut moving to B <strong>only after Firm A's reminder letter</strong>. Secret-sharing was rare and unaffected.</p><p><strong>Why don't noncompetes come with higher pay?</strong> Many workers don't notice them (hidden ≈ no effect), and they bite only when enforced or salient.</p></div>
+</div>
+
+<h3>3. Pay transparency</h3>
+<p>Horizontal transparency laws let workers discuss pay or require firms to publish it. Motivation: shrink the gender gap by letting women see when they're underpaid. Model: <strong>transparency shifts the firm from bargaining to posting.</strong></p>
+<div class="card"><h4>Model (L8 version)</h4><p>One firm, \(y=AL\), \(p=A=1\). Worker utility \(C-ev_i\), no other income, \(F(x)=P[v_i&lt;x]=x^\alpha\). Work iff \(w_{i,F}\ge v_i\).</p>
+<ul><li><strong>Before (Nash bargaining):</strong> \(w_i=\beta\,pA+(1-\beta)v_i\) with bargaining strength \(\beta\in(0,1)\). \(\beta=0\): reservation wage (L7). \(\beta=1\): MRPL.</li>
+<li>Average: \[\int_0^1(\beta+(1-\beta)v)\,\alpha v^{\alpha-1}dv=\beta+(1-\beta)\frac{\alpha}{1+\alpha}\].</li>
+<li><strong>After (posting):</strong> \(\eta=\frac{\partial}{\partial\log w}\log(Nw^\alpha)=\alpha\), so \(w^{post}=\frac{\alpha}{1+\alpha}\).</li>
+<li>If \(\beta&gt;0\): \(\beta+(1-\beta)\frac{\alpha}{1+\alpha}&gt;\frac{\alpha}{1+\alpha}\). <strong>Transparency reduces inequality but also reduces average wages</strong> (and, in the model, employment).</li></ul></div>
+<div class="grid2">
+<div class="card"><h4>Baker et al. (2023 AEJ: Applied)</h4><p>Canadian provinces required universities to publish names and salaries above a threshold (Ontario and Manitoba 1996, BC 1996/2002, Nova Scotia 2012, Alberta 2015, Newfoundland 2016). DiD: treated = faculty with at least one coworker above the threshold at reform; controls = same province, lower-paid departments (province × year × gender fixed effects). <strong>Gender gap shrinks ≈ 1.2–2pp</strong>, mostly because <strong>men's salaries fell</strong>; largest at the 25th–50th percentiles.</p></div>
+<div class="card"><h4>Cullen &amp; Pakzad-Hurson (2023 ECMA)</h4><p>13 US "Right of Workers to Talk" laws, 2000–2016, protecting the right to discuss and ask about pay, with penalties. Share prohibited from discussing pay fell faster in adopting states (33% → 10%). Event-study DiD: <strong>wages fell ≈ 2%</strong> for men and women alike, more in low-union occupations (more individual bargaining). <strong>Employment didn't change.</strong></p><p>Fits the model on wages. Misses on employment; but our model has one firm. If workers move easily between firms but rarely between work and non-work, employment needn't fall.</p></div>
+</div>
+
+<div class="trap"><span class="eyebrow">Interpretation questions to be ready for</span><ul style="margin:6px 0 0">
+<li><em>Is Cengiz et al. consistent with competition or posting?</em> Posting (no job loss), with the price pass-through caveat.</li>
+<li><em>Horton found employment fell. Does that reject posting?</em> Not necessarily: a $4 floor may be above the competitive wage for some jobs. And firms substituted to better workers, a margin our model ignores.</li>
+<li><em>Why don't noncompetes raise wages as compensating differentials?</em> Workers don't notice them (Cowgill et al.); the "cage" effect dominates (Johnson et al.).</li>
+<li><em>Why did transparency cut men's pay rather than raise women's?</em> In the model, moving to posting lowers the average; firms equalize by cutting the top.</li>
+</ul></div>
+</section>
+<!-- ============ PAPERS ============ -->
+<section class="panel" id="tab-papers" data-panel="papers" hidden>
+<h2>The 12 papers</h2>
+<p class="lede">On Midterm 1 the empirics questions said "describe <em>a</em> paper that…", so you choose. Know your go-to papers cold, and the rest well enough to recognize. Each card answers the study guide's three questions.</p>
+
+<h3>Your go-to picks</h3>
+<div class="tbl"><table>
+<tr><th>If the question asks for…</th><th>Go-to</th><th>Backup</th><th>Mnemonic</th></tr>
+<tr><td>An <strong>IV</strong> paper</td><td>Datta</td><td>Staiger (great for "is exclusion satisfied?": no)</td><td>"Living wage + the HR top-up"</td></tr>
+<tr><td>A <strong>DiD</strong> paper</td><td>Prager &amp; Schmitt</td><td>Cengiz et al.; Johnson et al.</td><td>"Big mergers bite nurses, not janitors"</td></tr>
+<tr><td>An <strong>RCT</strong></td><td>Horton</td><td>Cullen, Pakzad-Hurson &amp; Perez-Truglia; Cowgill et al.</td><td>"Floor → firms hire better, not fewer"</td></tr>
+<tr><td>An <strong>RD</strong> paper</td><td colspan="3">None on this list. If asked, use a Midterm 1 paper (Clark &amp; Martorell; Gaggl &amp; Wright).</td></tr>
+<tr><td>Do firms have <strong>market power</strong>?</td><td>Datta</td><td>Staiger; Caldwell &amp; Oehlsen</td><td>"Workers get 80%"</td></tr>
+<tr><td>A <strong>source</strong> of monopsony</td><td>Prager &amp; Schmitt (concentration)</td><td>Caldwell &amp; Oehlsen (outside options)</td><td>"Picky, Blind, Few"</td></tr>
+<tr><td><strong>Posting vs bargaining</strong></td><td>Townsend &amp; Allan</td><td>Cullen et al. (negotiation)</td><td>"Me alone: no raise. All of us: raise."</td></tr>
+<tr><td><strong>Minimum wages</strong></td><td>Cengiz et al.</td><td>Horton</td><td>"Missing below = excess above"</td></tr>
+<tr><td><strong>Noncompetes</strong></td><td>Johnson, Lavetti &amp; Lipsitz</td><td>Cowgill, Freiberg &amp; Starr</td><td>"Enforceable cage: −11%"</td></tr>
+<tr><td><strong>Pay transparency</strong></td><td>Cullen &amp; Pakzad-Hurson</td><td>Baker et al.</td><td>"Talk lowers everyone's pay"</td></tr>
+</table></div>
+
+<h3>Lecture 6 · Market power</h3>
+
+<div class="paper"><div class="ph"><h4>(a) Is there monopsony? VA nurses (Staiger, Spetz &amp; Phibbs 2010)</h4><span class="tag">IV</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>Registered nurses at Veterans Affairs hospitals. Before 1991 VA pay followed a national scale, so VA hospitals in high-wage cities underpaid (SF: $14.00 vs $16.30). The Nurse Pay Act of 1990 tied VA wages to local market wages from April 1991, with funds for the higher wage bills.</dd>
+<dt>Design</dt><dd>IV: the 1990 gap between local market and VA wages predicts the size of the mandated raise (slope ≈ 0.83), and that predicted raise instruments the hospital's wage change. Assumptions: the gap is unrelated to supply shocks, and affects employment only through the hospital's own wage. <strong>Exclusion is doubtful:</strong> the raise also pushed up competitors' wages (non-VA hospitals' wages rose too), so you need to model supply as a function of own <em>and</em> rivals' wages. Also very short run (1990 vs 1992).</dd>
+<dt>Findings</dt><dd>Very inelastic supply to the firm: \(\eta\approx0.1\) (2SLS estimates ≈ 0–0.2). Implied markdown \(\frac{1}{1+1/0.1}\approx0.09\): nurses paid ≈ 9% of MRPL. Implausibly low, likely biased down.</dd>
+<dt>Model</dt><dd>Strong monopsony: the markdown model with small \(\eta\).</dd>
+</dl><label class="know"><input type="checkbox" data-know="a"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(b) The measure of monopsony (Datta 2024)</h4><span class="tag">IV</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>A large UK service-sector firm: ≈18,800 workers, 362 establishments, median £10.20/hr, many on contracts with local councils.</dd>
+<dt>Design</dt><dd>Estimates recruitment and separation elasticities separately, with two instruments: (1) <strong>living-wage accreditation</strong>: when a council becomes accredited, new or renewed contracts require the living wage (entry-level wages +6%); (2) whether the posted wage happened to include the mandatory <strong>12.07% holiday top-up</strong>, which depended on which HR staffer wrote the posting (recruitment only). Assumptions: accreditation timing and the HR quirk are unrelated to local supply shocks and affect hiring and quits only via wages. Plausible: the top-up was always paid, only its display varied; accreditation is a council decision. Pre-trends flat.</dd>
+<dt>Findings</dt><dd>Recruitment elasticity ≈ 3; separation ≈ −0.08/0.05 ≈ −1.6; total \(\eta\approx3+1.6=4.6\) ("hires minus quits"). Markdown \(\frac{1}{1+1/4.6}\approx0.8\): workers get ≈ 80% of MRPL. Separation elasticity grows in magnitude with tenure.</dd>
+<dt>Model</dt><dd>Wage posting with moderate market power: meaningful, not extreme.</dd>
+</dl><label class="know"><input type="checkbox" data-know="b"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(d) Employer consolidation and wages: hospital mergers (Prager &amp; Schmitt 2021)</h4><span class="tag">DiD</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>US hospital mergers 2000–2010. Hospitals are big employers of nurses and pharmacists with few local alternatives.</dd>
+<dt>Design</dt><dd>DiD with two-way fixed effects: treated = commuting zones with exactly one hospital merger; control = zones with none. \[\ln w_{imt}=\delta_i+\tau_t+\alpha\,\text{post}_{mt}+\beta X+\varepsilon\]. Assumption: <strong>parallel trends</strong>; merging markets would have followed the same wage path. Checks: event studies (mostly flat pre-trends), placebo out-of-market mergers (no effect), no change in local unemployment, population or income. Worry: treated hospitals are bigger and in bigger, richer zones; mergers might target declining markets.</dd>
+<dt>Findings</dt><dd>Average merger: no effect. <strong>Top quartile of ΔHHI</strong> (HHI 4,580 → 7,344): skilled wages −4.1%, nursing and pharmacy −7.0%, unskilled ≈ 0. Smaller effects with more unionization. <strong>No change in employment.</strong></dd>
+<dt>Model</dt><dd>Concentration ("Few") gives market power. Unskilled unaffected because they have options outside hospitals. Wages falling without employment falling fits <strong>bargaining</strong>, not posting.</dd>
+</dl><label class="know"><input type="checkbox" data-know="d"> I can answer the three questions for this paper</label></div></div>
+
+<h3>Lecture 7 · Wage-setting</h3>
+
+<div class="paper"><div class="ph"><h4>(c) Outside options and labor supply: gig economy (Caldwell &amp; Oehlsen 2026)</h4><span class="tag">RCT used as IV</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>Uber drivers, who choose their own hours. Uber ran experiments offering random subsets of male and female drivers higher pay. Some drivers could also drive for Lyft, others couldn't.</dd>
+<dt>Design</dt><dd><strong>IV</strong>: randomized pay offers instrument realized hourly earnings. OLS fails because realized earnings depend on drivers' choices (when and where to drive) and demand shocks. Assumptions: relevance (offers raise pay); as good as random (randomized ✓); exclusion (the offer affects hours only through pay, not e.g. as a signal or through attention); monotonicity. Plausible. <strong>Lyft comparison needs more:</strong> access to Lyft must be unrelated to other drivers' traits that affect their elasticity.</dd>
+<dt>Findings</dt><dd>Access to one competing platform <strong>nearly doubles</strong> the elasticity of supply to Uber; the implied markdown falls from <strong>68% to about 50%</strong>. Women are about twice as elastic as men <em>to the market</em>, but no less elastic <em>to their employer</em>.</dd>
+<dt>Model</dt><dd>Markdown model: better outside options mean higher \(\eta\) and a smaller markdown. On gender: no evidence of different markdowns by sex, so it doesn't explain the gender gap here (HW3 Q3c).</dd>
+</dl><p class="small">Details from the paper's NBER abstract; this paper wasn't in the lecture slides. Cross-check with your HW3 answers.</p><label class="know"><input type="checkbox" data-know="c"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(e) Pushing the envelope: salary negotiations (Cullen, Pakzad-Hurson &amp; Perez-Truglia 2025)</h4><span class="tag">RCT</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>Tech job seekers recruited through levels.fyi (a pay-comparison site). Many underestimated how common and how successful negotiation is.</dd>
+<dt>Design</dt><dd>RCT: treated participants get a message that 42% of Americans negotiate and 85% of those succeed (plus negotiation lessons). Assumption: random assignment, so groups are comparable; outcomes observed only for those who report offers (Lee bounds handle selective reporting). Plausible.</dd>
+<dt>Findings</dt><dd>Intent to negotiate +3.6pp; actually negotiated +7.3pp (53.7% → 61.0%); improved offer +5.7pp. Bigger for low priors and for women (negotiated +16.8pp). About half who negotiated got more, averaging +13.9%. Average wage effect of the treatment ≈ <strong>+1%</strong>. Coaching had no effect.</dd>
+<dt>Model</dt><dd>Some <strong>bargaining</strong> exists and moves wages, at least for tech workers. The modest average effect fits a world that is mostly posting.</dd>
+</dl><label class="know"><input type="checkbox" data-know="e"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(f) Restricting migrants' job options (Townsend &amp; Allan 2025)</h4><span class="tag">Event study · lottery IV · DiD</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>New Zealand's Essential Skills visa ties a migrant to one job, only where no New Zealanders are available, unless the occupation is on the Essential Skills in Demand list.</dd>
+<dt>Design</dt><dd>(1) <strong>Individual shock</strong>: migrants moving from the tied visa to residence vs controls in the same firm and occupation. Concern that they get better conditions instead of pay: hours unchanged. Concern that they apply for residence anticipating personal shocks: use <strong>random visa lotteries</strong> (Pacific Access, Samoan Quota; 6,501 entries from 3,891 people). (2) <strong>Market shock</strong>: DiD on occupations added to the shortage list. Assumption: list changes independent of changes in labor demand and supply. Policymakers do respond to shocks, but some changes were for other reasons (e.g. occupation size). Matched Australian occupations show no change, supporting it.</dd>
+<dt>Findings</dt><dd>Individual: residence makes migrants switch employers much more (≈ 1% → 3% a month; lottery win: +70pp residence, +10–14pp switching) but <strong>no earnings gain</strong>. Market: listing raises earnings ≈ <strong>2.8%</strong> for migrants and residents, with more workers at new firms.</dd>
+<dt>Model</dt><dd><strong>Wage posting.</strong> Under posting the wage depends on everyone's outside options (through \(\eta\)), not one worker's. "Me alone: no raise. All of us: raise."</dd>
+</dl><label class="know"><input type="checkbox" data-know="f"> I can answer the three questions for this paper</label></div></div>
+
+<h3>Lecture 8 · Regulation</h3>
+
+<div class="paper"><div class="ph"><h4>(g) Price floors and employer preferences: minimum wage experiment (Horton 2025)</h4><span class="tag">RCT</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>An online gig platform where workers bid on jobs and firms choose.</dd>
+<dt>Design</dt><dd>RCT: minimum bids of $2, $3 or $4/hour (or none), <strong>randomized across firms</strong>. Assumption: random assignment; no spillovers between treated and control firms on the same platform. Plausible, but it's a partial-equilibrium, small-firm setting.</dd>
+<dt>Findings</dt><dd>Hiring fell a little (≈ −6% at $4), only ≈ <strong>10% of what full destruction of below-minimum jobs would imply</strong>. Hours fell ≈ 25%. Wages of hires +18% to +44%. Firms <strong>substituted toward more productive workers</strong> (higher past wages, more US hires, fewer from Bangladesh).</dd>
+<dt>Model</dt><dd>Mostly competitive: a binding floor reduces labor bought. The substitution to better workers is a margin our one-type models leave out.</dd>
+</dl><label class="know"><input type="checkbox" data-know="g"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(h) Minimum wages and low-wage jobs (Cengiz, Dube, Lindner &amp; Zipperer 2019)</h4><span class="tag">DiD (bunching)</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>138 US state minimum-wage increases, 1979–2016.</dd>
+<dt>Design</dt><dd>DiD by wage bin: count jobs just below and just above the new minimum in treated states, against counterfactual states. Assumption: <strong>parallel trends bin by bin</strong>: employment in each wage bin in raising states would have evolved like in other states. Flat pre-trends support it.</dd>
+<dt>Findings</dt><dd>Missing jobs below \(\Delta b=-1.8\%\) of employment, excess jobs just above \(\Delta a=+2.1\%\): <strong>no net job loss</strong>. Affected wages +6.8%; ≈ 40% from spillovers above the minimum. Same for teens, less-educated workers, tradeable sectors.</dd>
+<dt>Model</dt><dd>Consistent with <strong>wage posting</strong>. Caveat: posting predicts output up and prices down, but firms pass costs into higher prices (Harasztosi &amp; Lindner), so maybe competitive with very inelastic demand.</dd>
+</dl><label class="know"><input type="checkbox" data-know="h"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(i) Legal restrictions on worker mobility (Johnson, Lavetti &amp; Lipsitz 2025)</h4><span class="tag">DiD</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>US states 1991–2014. Noncompete enforceability changes often, mostly through court decisions, in both directions.</dd>
+<dt>Design</dt><dd>A 0–1 state-year enforceability score (e.g. Pennsylvania 1995: enforceable even if fired, +0.1). DiD/event study using changes in the score. Assumption: parallel trends, i.e. law changes aren't driven by state economic trends. Changes are uncorrelated with politics, unemployment and other state characteristics; pre-trends flat.</dd>
+<dt>Findings</dt><dd>Moving from unenforceable to fully enforceable cuts earnings ≈ <strong>11%</strong>, more for educated workers and high-use occupations and industries; job-to-job mobility falls in high-use industries; effects spill across state borders. Also: less innovation; weak evidence of more training.</dd>
+<dt>Model</dt><dd>"Cage beats comp": noncompetes shrink outside options, lowering wages under posting or bargaining.</dd>
+</dl><label class="know"><input type="checkbox" data-know="i"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(j) Clause and effect: noncompete field experiment (Cowgill, Freiberg &amp; Starr 2026)</h4><span class="tag">RCT</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>Freelance HR recruiters; two finance firms. Phase 1: Firm A offers ≈14,000 recruiters resume-review work. Phase 2: Firm B approaches the same workers.</dd>
+<dt>Design</dt><dd>Field experiment randomizing the wage ($25 vs $65) and the contract: salient noncompete, hidden noncompete, or none (15,000 got no offer). During Firm B's recruiting, Firm A sent a reminder of contractual obligations. Assumption: random assignment. Plausible.</dd>
+<dt>Findings</dt><dd>Salient noncompetes cut opening (−7.9pp) and signing (−2.3pp), equivalent to ≈ $15–44 of wage; hidden had little effect (most spent seconds on that page). Noncompetes cut moving to Firm B <strong>only after the reminder</strong>. Secret-sharing rare and unaffected.</dd>
+<dt>Model</dt><dd>Explains why noncompetes don't carry a compensating differential: workers often don't notice them. They restrict mobility when salient or enforced ("cage").</dd>
+</dl><label class="know"><input type="checkbox" data-know="j"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(k) Pay transparency and the gender gap (Baker et al. 2023)</h4><span class="tag">DiD</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>Canadian universities. Several provinces made universities publish names and salaries above a threshold, at different times (1996–2016).</dd>
+<dt>Design</dt><dd>Staggered DiD: treated = faculty who, at reform, had at least one coworker above the threshold; controls = faculty in the same province in lower-paid departments (province × year × gender fixed effects). Assumption: parallel trends between higher- and lower-paid departments. Pre-trends flat.</dd>
+<dt>Findings</dt><dd>Gender gap shrinks ≈ 1.2–2pp, mostly because <strong>men's salaries fell</strong>; largest at the 25th–50th percentiles.</dd>
+<dt>Model</dt><dd>Transparency moves bargaining toward posting: less dispersion, lower average. "Equal, lower."</dd>
+</dl><label class="know"><input type="checkbox" data-know="k"> I can answer the three questions for this paper</label></div></div>
+
+<div class="paper"><div class="ph"><h4>(l) Equilibrium effects of pay transparency (Cullen &amp; Pakzad-Hurson 2023)</h4><span class="tag">DiD</span></div><div class="pb"><dl>
+<dt>Setting</dt><dd>13 US "Right of Workers to Talk" laws, 2000–2016, protecting workers' right to discuss and ask about pay, with penalties for employers.</dd>
+<dt>Design</dt><dd>Event-study DiD around law passage. Assumption: parallel trends between adopting and other states. Pre-trends flat; share prohibited from discussing pay fell faster in adopting states (33% → 10%), so the laws had teeth.</dd>
+<dt>Findings</dt><dd>Wages fell ≈ <strong>2%</strong> for men and women alike, more in low-union occupations. <strong>No change in employment.</strong></dd>
+<dt>Model</dt><dd>Consistent with transparency → posting on wages. The model predicted employment would fall; it didn't. Fix: our model has one firm; if workers switch easily between firms but rarely between work and non-work, employment needn't fall.</dd>
+</dl><label class="know"><input type="checkbox" data-know="l"> I can answer the three questions for this paper</label></div></div>
+
+<h3>One-line versions</h3>
+<div class="tbl"><table>
+<tr><th>Paper</th><th>In one breath</th></tr>
+<tr><td>VA nurses</td><td>IV from the Nurse Pay Act; η ≈ 0.1 (9% of MRPL); exclusion fails because rivals' wages rose too.</td></tr>
+<tr><td>Datta</td><td>IV with living wage + HR top-up; recruit 3, separate −1.6, η ≈ 4.6, 80% of MRPL.</td></tr>
+<tr><td>Uber/Lyft</td><td>Randomized pay as IV; Lyft access nearly doubles η, markdown 68% → 50%; women not less elastic to employer.</td></tr>
+<tr><td>Hospital mergers</td><td>DiD; big mergers cut skilled/nursing wages 4–7%, not employment → bargaining.</td></tr>
+<tr><td>Negotiation RCT</td><td>Nudge to negotiate: +7pp negotiate, about half win +14%, avg +1%.</td></tr>
+<tr><td>NZ migrants</td><td>Own outside option: no raise; occupation-wide: +2.8% → posting.</td></tr>
+<tr><td>Horton</td><td>Randomized floors: hiring −6%, firms hire better workers.</td></tr>
+<tr><td>Cengiz et al.</td><td>Bunching DiD, 138 increases: missing below = excess above, no job loss.</td></tr>
+<tr><td>Johnson et al.</td><td>Enforceability DiD: −11% earnings, less mobility.</td></tr>
+<tr><td>Cowgill et al.</td><td>Salient scares, hidden doesn't; bites only after the reminder.</td></tr>
+<tr><td>Baker et al.</td><td>Salary disclosure: gap −2pp because men's pay fell.</td></tr>
+<tr><td>Cullen &amp; P-H</td><td>Right-to-talk laws: wages −2%, employment flat.</td></tr>
+</table></div>
+
+<h3>"Describe a paper that…" prompt bank</h3>
+<p>Answer out loud with the template, then open the model answer.</p>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 1</span>Describe a paper that estimates the labor supply elasticity facing a firm. Setting, findings, and what it implies about the markdown.</div><details><summary>Model answer</summary><div class="body"><p><strong>Datta (2024).</strong> A large UK service firm. IV with two instruments: councils' living-wage accreditation (forces higher wages on their contracts) and whether the posted wage included the 12.07% holiday top-up (an HR quirk). Recruitment elasticity ≈ 3, separation ≈ −1.6, so η ≈ 4.6. Markdown \(1/(1+1/4.6)\approx0.8\): workers earn about 80% of MRPL. The instruments move wages without being supply shocks; accreditation is a council decision and the top-up display was arbitrary.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 2</span>Describe a paper that used a difference-in-differences design. What does parallel trends require, and is it plausible?</div><details><summary>Model answer</summary><div class="body"><p><strong>Prager &amp; Schmitt (2021).</strong> Hospital mergers 2000–2010; treated commuting zones had exactly one merger, controls had none; two-way fixed effects. Parallel trends: absent the merger, wages in merging markets would have moved like wages elsewhere. Mostly plausible: event studies are roughly flat before mergers, out-of-market mergers show no effect, and local unemployment and income don't change. Worry: treated markets are bigger and richer, and mergers could target struggling markets. Finding: big mergers cut skilled wages ≈ 4% and nursing/pharmacy ≈ 7%, with no change in employment, which fits bargaining.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 3</span>Describe a paper that tests whether firms post wages or bargain. Which model do the results support?</div><details><summary>Model answer</summary><div class="body"><p><strong>Townsend &amp; Allan (2025).</strong> New Zealand migrants on visas tied to one job. When one migrant gains residence (including via random lotteries) they switch employers more but earn no more than coworkers. When a whole occupation is added to the shortage list, freeing all migrants in it, earnings rise ≈ 2.8% for migrants and residents. Bargaining predicts the individual shock raises that worker's wage; posting predicts only market-wide shocks matter, through η. The results support <strong>posting</strong>. The DiD needs list changes to be unrelated to demand/supply shocks.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 4</span>Describe a paper on the employment effects of minimum wages. Are the results more consistent with the competitive or the wage-posting model?</div><details><summary>Model answer</summary><div class="body"><p><strong>Cengiz et al. (2019).</strong> 138 state increases; DiD by wage bin. Jobs missing below the new minimum (−1.8% of employment) are offset by excess jobs just above (+2.1%): no net job loss, wages of affected workers +6.8%. The competitive model predicts a binding floor cuts employment; posting allows employment to stay flat or rise when the floor is between the posted and competitive wage. So more consistent with <strong>posting</strong>, with the caveat that firms raise prices (Harasztosi &amp; Lindner), which posting doesn't predict.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 5</span>Describe a paper that used a randomized experiment. What does randomization buy you, and what can't it tell you?</div><details><summary>Model answer</summary><div class="body"><p><strong>Horton (2025).</strong> An online platform randomized minimum bids ($2/$3/$4) across firms. Randomization makes treated and control firms comparable, so differences are causal. Hiring fell slightly (−6% at $4), hours ≈ −25%, and firms hired more productive workers. Limits: firms on one platform are small relative to the market (partial equilibrium), and treated and control firms compete for the same workers (possible spillovers), so it can't tell you the economy-wide effect of a minimum wage.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 6</span>Describe a paper on noncompete agreements. Why might noncompetes raise or lower wages, and which effect dominates?</div><details><summary>Model answer</summary><div class="body"><p><strong>Johnson, Lavetti &amp; Lipsitz (2025).</strong> State-year enforceability scores from court decisions; DiD. Going from unenforceable to fully enforceable cuts earnings ≈ 11% and reduces job-to-job mobility. Two forces: the "cage" (fewer outside options → lower reservation wages → lower wages) and the "comp" (workers demand more to sign). Evidence: the cage dominates. Cowgill et al. explain why there's no compensating differential: workers often don't notice hidden noncompetes.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Prompt 7</span>Describe a paper on pay transparency. Does it fit the model in which transparency shifts firms from bargaining to posting?</div><details><summary>Model answer</summary><div class="body"><p><strong>Cullen &amp; Pakzad-Hurson (2023).</strong> 13 US right-to-talk laws, event-study DiD. Wages fell ≈ 2% for men and women, more in low-union occupations. The model predicts transparency compresses wages and lowers the average when \(\beta&gt;0\): yes on wages, and the low-union result fits (more individual bargaining to undo). It also predicts lower employment, which isn't found; with one firm in the model, it ignores that workers move between firms rather than in and out of work.</p></div></details></div>
+</section>
+<!-- ============ DESIGNS ============ -->
+<section class="panel" id="tab-designs" data-panel="designs" hidden>
+<h2>Four research designs</h2>
+<p class="lede">Same four as Midterm 1, now with the Midterm 2 papers. For each: what it estimates, the assumption that makes it causal, and how to check it. The Midterm 1 key gave full marks for discussing just the key assumption well.</p>
+
+<div class="paper"><div class="ph"><h4>Randomized controlled trial</h4><span class="tag">Horton · Cullen et al. (negotiation) · Cowgill et al. · Caldwell &amp; Oehlsen</span></div><div class="pb"><dl>
+<dt>Idea</dt><dd>Randomly assign treatment, so groups are identical in expectation. ATE ≈ mean(treated) − mean(control).</dd>
+<dt>Key assumption</dt><dd>Randomization worked (check balance) and no spillovers between groups.</dd>
+<dt>Worries</dt><dd>Partial take-up (then it's intention-to-treat); selective reporting of outcomes (Cullen et al. use Lee bounds); spillovers (Horton: treated and control firms share a platform); partial equilibrium and external validity (tech workers, one platform, freelance recruiters).</dd>
+</dl></div></div>
+
+<div class="paper"><div class="ph"><h4>Instrumental variables</h4><span class="tag">Staiger · Datta · Caldwell &amp; Oehlsen · Townsend &amp; Allan (lottery)</span></div><div class="pb"><dl>
+<dt>Idea</dt><dd>\(X\) (the wage) and \(Y\) (employment) are confounded. Find \(Z\) that moves \(X\) and affects \(Y\) only through \(X\). \(\beta=\delta/\pi\) = reduced form ÷ first stage.</dd>
+<dt>Assumptions</dt><dd>(1) <strong>Relevance</strong>: \(Z\) moves \(X\) (check the first-stage F; Datta's are 34–112). (2) <strong>As good as random</strong>. (3) <strong>Exclusion</strong>: \(Z\) affects \(Y\) only via \(X\). (4) <strong>Monotonicity</strong>. Result is a LATE for compliers.</dd>
+<dt>In this unit</dt><dd>To estimate a <em>supply</em> elasticity, the instrument must shift the firm's wage without being a supply shock: a demand shock or an institutional wage change.
+<ul style="margin:6px 0 0"><li>Staiger: Nurse Pay Act gap. Exclusion fails: rivals' wages rose too.</li>
+<li>Datta: living-wage accreditation and the HR top-up quirk.</li>
+<li>Caldwell &amp; Oehlsen: randomized pay offers instrument realized earnings.</li>
+<li>Townsend &amp; Allan: lottery win instruments residence (first stage ≈ 0.7).</li></ul></dd>
+</dl></div></div>
+
+<div class="paper"><div class="ph"><h4>Difference-in-differences</h4><span class="tag">Prager &amp; Schmitt · Cengiz et al. · Johnson et al. · Baker et al. · Cullen &amp; P-H · Townsend &amp; Allan (list)</span></div><div class="pb"><dl>
+<dt>Idea</dt><dd>\[(Y_{T,after}-Y_{T,before})-(Y_{C,after}-Y_{C,before})\]. Two-way fixed effects: \(Y_{it}=\alpha_i+\delta_t+\beta T_{it}+u_{it}\).</dd>
+<dt>Key assumption</dt><dd><strong>Parallel trends</strong>: without treatment, treated and control would have moved together. Check pre-period event-study coefficients (normalize the year before to 0).</dd>
+<dt>Paper-specific versions</dt><dd>
+<ul style="margin:0"><li>Prager &amp; Schmitt: merging markets weren't already on different wage paths.</li>
+<li>Cengiz: employment in each wage bin would have evolved like in non-raising states.</li>
+<li>Johnson et al.: enforceability changes weren't driven by state economic trends.</li>
+<li>Baker et al.: higher-paid and lower-paid departments in the same province would have trended together.</li>
+<li>Townsend &amp; Allan: shortage-list changes unrelated to occupation demand/supply shocks.</li></ul></dd>
+</dl></div></div>
+
+<div class="paper"><div class="ph"><h4>Regression discontinuity</h4><span class="tag">No Midterm 2 paper · use Clark &amp; Martorell or Gaggl &amp; Wright</span></div><div class="pb"><dl>
+<dt>Idea</dt><dd>Treatment switches on at a cutoff of a running variable. Compare just above vs just below.</dd>
+<dt>Key assumption</dt><dd>\(E[\nu\mid X]\) continuous at the cutoff: no manipulation (check the density for bunching; covariates shouldn't jump). Fuzzy RD = IV with the cutoff as instrument.</dd>
+</dl></div></div>
+
+<h3>Which design for which paper</h3>
+<div class="tbl"><table>
+<tr><th>Paper</th><th>Design</th><th>Assumption to discuss</th><th>Plausible?</th></tr>
+<tr><td>VA nurses (Staiger)</td><td>IV</td><td>Exclusion: the mandated raise affects employment only via the VA wage</td><td>No: rivals' wages rose too</td></tr>
+<tr><td>Datta</td><td>IV</td><td>Accreditation and HR quirk unrelated to supply shocks</td><td>Yes</td></tr>
+<tr><td>Caldwell &amp; Oehlsen</td><td>RCT as IV</td><td>Offers affect hours only via pay; Lyft access as good as random</td><td>Yes for offers; Lyft needs more</td></tr>
+<tr><td>Prager &amp; Schmitt</td><td>DiD</td><td>Parallel trends for merging markets</td><td>Mostly</td></tr>
+<tr><td>Cullen et al. (negotiation)</td><td>RCT</td><td>Random assignment; selective reporting</td><td>Yes (Lee bounds)</td></tr>
+<tr><td>Townsend &amp; Allan</td><td>Event study, lottery IV, DiD</td><td>Lottery random; list changes independent of shocks</td><td>Lottery yes; list mostly</td></tr>
+<tr><td>Horton</td><td>RCT</td><td>Random across firms; no spillovers</td><td>Yes, partial equilibrium</td></tr>
+<tr><td>Cengiz et al.</td><td>DiD (bunching)</td><td>Parallel trends by wage bin</td><td>Yes, flat pre-trends</td></tr>
+<tr><td>Johnson et al.</td><td>DiD</td><td>Law changes not driven by state trends</td><td>Yes, uncorrelated with observables</td></tr>
+<tr><td>Cowgill et al.</td><td>RCT</td><td>Random assignment</td><td>Yes</td></tr>
+<tr><td>Baker et al.</td><td>Staggered DiD</td><td>High- vs low-paid departments trend together</td><td>Mostly, flat pre-trends</td></tr>
+<tr><td>Cullen &amp; P-H</td><td>Event-study DiD</td><td>Adopting states trend like others</td><td>Mostly, flat pre-trends</td></tr>
+</table></div>
+</section>
+<!-- ============ HW3 ============ -->
+<section class="panel" id="tab-hw3" data-panel="hw3" hidden>
+<h2>Homework 3, solved</h2>
+<p class="lede">There's no official answer key, so this one is worked out and checked here. Every part is stated as a question; try it on paper before opening the solution. The study guide says to be comfortable with all of it.</p>
+
+<h3>Q1 · Wage-setting in a monopsonistic market</h3>
+<p>One firm, workers \(i\in[0,N]\), \(y=AL\) with \(A=p=1\). Utility \(C-ev_i\); consumption = wage if employed, 0 if not. \(F(x)=P[v_i&lt;x]=x^\alpha\) on \([0,1]\).</p>
+
+<div class="problem"><div class="q"><span class="eyebrow">Q1a</span>What is the efficient employment rate: for what share of workers is MRPL greater than their distaste for work?</div>
+<details><summary>Solution</summary><div class="body"><p>MRPL \(=pA=1\). Every \(v_i\in[0,1]\) is below 1, so working creates surplus for <strong>all</strong> workers: efficient employment rate = <strong>100%</strong> (\(P[v_i&lt;1]=1^\alpha=1\)).</p></div></details></div>
+
+<div class="problem"><div class="q"><span class="eyebrow">Q1b</span>Derive the elasticity of labor supply and show it doesn't depend on employment.</div>
+<details><summary>Solution</summary><div class="body"><p>Work iff \(w-v_i\ge0\iff v_i\le w\). So \(L^s(w)=N\,P[v_i\le w]=Nw^\alpha\). Logs: \(\log L^s=\log N+\alpha\log w\), so \(\eta=\frac{\partial\log L^s}{\partial\log w}=\alpha\). A constant: it doesn't depend on \(w\) or \(L\).</p></div></details></div>
+
+<div class="problem"><div class="q"><span class="eyebrow">Q1c</span>Under wage-posting, what wage does the firm pick?</div>
+<details><summary>Solution</summary><div class="body"><p>Markdown formula: \[w=\text{MRPL}\cdot\frac{1}{1+1/\eta}=1\cdot\frac{\alpha}{1+\alpha}=\boxed{\frac{\alpha}{1+\alpha}}\].</p><p class="small">Check by direct maximization: \(\pi(w)=(1-w)Nw^\alpha\). FOC: \[-Nw^\alpha+(1-w)N\alpha w^{\alpha-1}=0\Rightarrow w=\alpha(1-w)\Rightarrow w=\frac{\alpha}{1+\alpha}\]. ✓</p></div></details></div>
+
+<div class="problem"><div class="q"><span class="eyebrow">Q1d</span>Employment under posting as a function of α. Compute it for α = 0.5, 1, 2. Surprising?</div>
+<details><summary>Solution</summary><div class="body"><p>\(L^{post}=N\big(\frac{\alpha}{1+\alpha}\big)^\alpha\).</p>
+<div class="tbl"><table><tr><th>α</th><th>Posted wage</th><th>Employment / N</th></tr>
+<tr><td>0.5</td><td>1/3 ≈ 0.333</td><td>\((1/3)^{0.5}\approx\) <strong>0.577</strong></td></tr>
+<tr><td>1</td><td>1/2</td><td>\((1/2)^1=\) <strong>0.500</strong></td></tr>
+<tr><td>2</td><td>2/3 ≈ 0.667</td><td>\((2/3)^2\approx\) <strong>0.444</strong></td></tr></table></div>
+<p><strong>Surprising:</strong> a higher \(\alpha\) means more elastic supply and a smaller markdown, yet employment <em>falls</em>, the opposite of the usual intuition that more elastic supply means less monopsony distortion.</p>
+<p><strong>What's going on:</strong> \(\alpha\) does two things at once. It is the elasticity, and it also shifts the whole distribution of distaste: \(P[v&lt;x]=x^\alpha\) puts more workers near \(v=1\) as \(\alpha\) rises. So at any wage below 1, fewer workers are willing. The wage rises toward 1, but \(w^\alpha\) still falls. (As \(\alpha\to\infty\), employment → \(N/e\approx0.37N\); as \(\alpha\to0\), → \(N\).) Since efficient employment is always 100%, the employment loss from posting <em>grows</em> with \(\alpha\) here. Lesson: you can't change η in this model without changing who the workers are.</p></div></details></div>
+
+<div class="problem"><div class="q"><span class="eyebrow">Q1e</span>Now the firm bargains and each employed worker gets their reservation wage. Find \(w^r(v_i)\), the average wage \(\int_0^1w^r(v)f(v)\,dv\), and compare it to the posted wage.</div>
+<details><summary>Solution</summary><div class="body"><p>Reservation wage: \(w^r(v_i)=v_i\). All workers have \(v_i\le1=\) MRPL, so all are hired (efficient, 100%).</p>
+<p>Density \(f(v)=\alpha v^{\alpha-1}\). Average wage:</p>
+\[ \int_0^1 v\cdot\alpha v^{\alpha-1}\,dv=\alpha\int_0^1v^\alpha\,dv=\frac{\alpha}{\alpha+1}. \]
+<p><strong>Exactly the posted wage.</strong> Same average pay, but bargaining employs everyone (vs \(N(\frac{\alpha}{1+\alpha})^\alpha\)) and pays them different amounts. So bargaining is efficient and more unequal; posting is equal but loses jobs. That's "EIS" in one problem. (With Nash weight \(\beta&gt;0\), as in L8, the bargaining average rises to \(\beta+(1-\beta)\frac{\alpha}{1+\alpha}\).)</p></div></details></div>
+
+<h3>Q2 · Gender and markdowns</h3>
+<p>A CRS firm with MRPL = 10 employs men and women; \(\eta_{men}=4\), \(\eta_{women}=2\).</p>
+<div class="problem"><div class="q"><span class="eyebrow">Q2a</span>Using the three reasons firms face low elasticities, give one reason women might be less elastic than men.</div>
+<details><summary>Solution</summary><div class="body"><p>Any one of "Picky, Blind, Few":</p><ul><li><strong>Picky</strong> (heterogeneous preferences): if women place more weight on a short commute or flexibility (e.g. childcare), fewer jobs suit them, so they're less likely to leave over pay. Mas &amp; Pallais find women value work-from-home more.</li><li><strong>Few</strong> (concentration): commuting constraints shrink the set of feasible employers.</li><li><strong>Blind</strong> (search frictions): narrower job-search networks mean fewer known alternatives.</li></ul><p>Note: Caldwell &amp; Oehlsen find that among Uber drivers women are <em>not</em> less elastic to their employer.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Q2b</span>If the firm posts separate wages for men and women, what are they?</div>
+<details><summary>Solution</summary><div class="body"><p>Men: \(10\cdot\frac{4}{5}=\boxed{8}\). Women: \(10\cdot\frac{2}{3}\approx\boxed{6.67}\). The less elastic group gets the bigger markdown.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Q2c</span>With one wage for both, show \(\eta=s_{men}\eta_{men}+s_{women}\eta_{women}\). Which wage if the shares are 0.5/0.5? If \(s_{men}=0.1\)?</div>
+<details><summary>Solution</summary><div class="body"><p>\(L(w)=L_m(w)+L_w(w)\), so</p>
+\[ \eta=\frac{w}{L}\big(L_m'+L_w'\big)=\frac{L_m}{L}\cdot\frac{wL_m'}{L_m}+\frac{L_w}{L}\cdot\frac{wL_w'}{L_w}=s_m\eta_m+s_w\eta_w. \]
+<p>Shares 0.5/0.5: \(\eta=0.5(4)+0.5(2)=3\), so \(w=10\cdot\frac34=\boxed{7.5}\).</p>
+<p>\(s_{men}=0.1\): \(\eta=0.1(4)+0.9(2)=2.2\), so \(w=10\cdot\frac{2.2}{3.2}=\boxed{6.875}\). A mostly-female workforce means a lower common wage.</p></div></details></div>
+
+<h3>Q3 · Caldwell &amp; Oehlsen</h3>
+<div class="problem"><div class="q"><span class="eyebrow">Q3a</span>Why do the authors use IV? What assumptions does their instrument need, and are they satisfied?</div>
+<details><summary>Solution</summary><div class="body"><p>They want the elasticity of drivers' hours with respect to their pay. Realized hourly earnings aren't random: they depend on when and where drivers choose to work and on demand shocks that also affect hours, so OLS is biased. Uber's <strong>randomized pay offers</strong> shift earnings exogenously, so they instrument realized pay.</p><ul>
+<li><strong>Relevance</strong>: the offer raises earnings. Testable; yes.</li>
+<li><strong>As good as random</strong>: offers were randomized. Yes.</li>
+<li><strong>Exclusion</strong>: the offer affects hours only through pay, not e.g. by reminding drivers about the app or signaling something about future pay. Mostly plausible.</li>
+<li><strong>Monotonicity</strong>: a higher offer never reduces anyone's pay. Plausible.</li></ul></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Q3b</span>How does competition from Lyft affect the labor supply elasticity facing Uber? Do we need extra assumptions?</div>
+<details><summary>Solution</summary><div class="body"><p>Access to Lyft roughly <strong>doubles</strong> the elasticity of supply to Uber: with an alternative app, a pay cut sends drivers to Lyft, not just home. The implied markdown falls from ≈68% to ≈50%.</p><p><strong>Extra assumption:</strong> whether a driver can use Lyft is not randomized, so we need Lyft access to be unrelated to other driver traits that affect their elasticity (as good as random). Drivers who can drive for Lyft might differ in car type, location or commitment to driving.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">Q3c</span>Relate the gender-specific estimates to Q2. Do they suggest the gender wage gap comes from different markdowns?</div>
+<details><summary>Solution</summary><div class="body"><p>Q2 shows a gap arises if women are <em>less elastic to the firm</em>. Caldwell &amp; Oehlsen find women are about twice as elastic as men <em>to the market</em> (in and out of work), but <strong>no less elastic to their employer</strong>. The markdown depends on the firm-specific elasticity, so they give no reason for Uber to mark women down more. Different markdowns don't explain the gender gap here. (Uber's pay is also set by a gender-blind algorithm.)</p></div></details></div>
+</section>
+<!-- ============ PRACTICE ============ -->
+<section class="panel" id="tab-practice" data-panel="practice" hidden>
+<h2>Practice exams</h2>
+<p class="lede">Part A is your professor's practice question with the answers hidden, as he suggested. Part B is a full new exam in the format of the real Midterm 1: three model questions and an empirics section. Paper and pen, closed notes.</p>
+
+<h3>Part A · The official practice question (≈ 35 min)</h3>
+<div class="problem"><div class="q"><span class="eyebrow">Setup</span>
+<p>Workers \(i\in[0,N]\) choose to work at firm \(F\) or be unemployed. Utility \(u_i(C,e)=C-a_ie\); no income if not employed, so \(C_i\le we_i\). Disutility \(F(x)=P[a_i\le x]=x^\eta\) for \(0\le x\le1\) (assume less than full employment). The firm has \(y_F(L)=AL^\rho\), \(A&gt;0\), \(0&lt;\rho&lt;1\), output price \(p=1\).</p></div></div>
+<div class="problem"><div class="q"><span class="eyebrow">a)</span>Derive a worker's reservation wage and the labor supply schedule (for a wage between 0 and 1).</div><details><summary>Solution</summary><div class="body"><p>Work iff \(w-a_i\ge0\), so \(w^r_i=a_i\). \(L^s(w)=N\,P[a_i\le w]=Nw^\eta\).</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">b)</span>Find the firm's marginal revenue product of labor.</div><details><summary>Solution</summary><div class="body"><p>\(\text{MRPL}=\rho AL^{\rho-1}\).</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">c)</span>Competitive equilibrium (firm takes wages as given): find employment and the wage.</div><details><summary>Solution</summary><div class="body"><p>\[w=\rho A(Nw^\eta)^{\rho-1}\Rightarrow w^{1-\eta(\rho-1)}=\rho AN^{\rho-1}\Rightarrow w=\big(\rho AN^{\rho-1}\big)^{\frac{1}{1-\eta(\rho-1)}}\]. Employment \[L=Nw^\eta=N\big(\rho AN^{\rho-1}\big)^{\frac{\eta}{1-\eta(\rho-1)}}\].</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">d)</span>A minimum wage \(\underline w\) above the competitive wage is imposed; the firm still takes the wage as given. Find employment.</div><details><summary>Solution</summary><div class="body"><p>Above the competitive wage there's excess supply, so employment is on labor demand: \[\underline w=\rho AL^{\rho-1}\Rightarrow L=\big(\frac{\underline w}{\rho A}\big)^{\frac{1}{\rho-1}}\].</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">e)</span>Wage-posting equilibrium without a minimum wage: solve for the profit-maximizing wage, \(\max_w\{p\,y_F(L^s(w))-wL^s(w)\}\).</div><details><summary>Solution</summary><div class="body"><p>Objective: \(A(Nw^\eta)^\rho-wNw^\eta=AN^\rho w^{\rho\eta}-Nw^{\eta+1}\). FOC: \[\rho\eta AN^\rho w^{\rho\eta-1}-(\eta+1)Nw^\eta=0\Rightarrow w=\Big(\frac{(\eta+1)N^{1-\rho}}{\rho\eta A}\Big)^{\frac{1}{\rho\eta-1-\eta}}\].</p><p class="small">Shortcut check ("competition with a shrunk A"): \(w^{1+\eta-\eta\rho}=\frac{\eta}{1+\eta}\rho AN^{\rho-1}\). Flip the base and the exponent's sign and it's the same expression.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">f)</span>Wage-posting with the same minimum wage as in (d): what is employment?</div><details><summary>Solution</summary><div class="body"><p>The minimum is above the competitive wage, so there's excess supply; the firm hires until MRPL = \(\underline w\): the same \(L=\big(\frac{\underline w}{\rho A}\big)^{\frac{1}{\rho-1}}\) as in (d). Above the competitive wage, posting and competition give identical answers.</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">g)</span>Under wage-posting, what minimum wage maximizes employment?</div><details><summary>Solution</summary><div class="body"><p>The competitive wage from (c). Below it, raising the minimum moves employment up the supply curve; above it, down the demand curve. "Between the wages, jobs go up," peaking at \(w_{comp}\).</p></div></details></div>
+
+<h3>Part B · Full practice exam (80 min)</h3>
+<div class="callout"><span class="eyebrow">Timing</span><p style="margin:4px 0 0">Q1 20 min · Q2 20 min · Q3 15 min · Q4 25 min. Stuck for 4 minutes? Write the setup and move on.</p></div>
+
+<h4>Question 1 · Minimum wages under wage posting</h4>
+<div class="problem"><div class="q"><span class="eyebrow">Setup</span><p>Workers \(i\in[0,N]\), utility \(C-a_ie\), no income if not working, \(a_i\sim U[0,1]\). One firm with \(y=AL\), \(A=0.8\), price 1.</p>
+<ol><li>Derive labor supply and its elasticity.</li><li>Find the competitive wage and employment.</li><li>Find the posted wage and employment.</li><li>A minimum wage of 0.6 is imposed. Employment under posting? Under the competitive model?</li><li>The minimum is raised to 0.9. Employment now?</li><li>Which minimum wage maximizes employment under posting?</li><li>Cengiz et al. find state minimum wages don't reduce employment. Which model does that support? Name one piece of evidence that complicates your answer.</li></ol></div>
+<details><summary>Solution</summary><div class="body"><ol>
+<li>Work iff \(w\ge a_i\); \(L^s=N\,P[a_i\le w]=Nw\). \(\log L=\log N+\log w\): \(\eta=1\).</li>
+<li>CRS: MRPL \(=A=0.8\) at any \(L\). Competitive: \(w=0.8\), \(L=0.8N\).</li>
+<li>Markdown with \(\eta=1\): \(w=0.8\cdot\frac12=0.4\), \(L=0.4N\). (Direct: \(\max_w(0.8-w)Nw\Rightarrow w=0.4\).)</li>
+<li>Posting: 0.6 is between 0.4 and 0.8, so the firm pays 0.6 and hires everyone willing: \(L=0.6N\), <strong>up</strong> from 0.4N. Competitive: 0.6 &lt; 0.8 doesn't bind, so still 0.8N.</li>
+<li>0.9 &gt; MRPL = 0.8: every worker loses the firm money, so with CRS it hires <strong>no one</strong> (L = 0) in both models. With CRS, demand is flat at A: any minimum above A shuts the firm down.</li>
+<li>0.8, the competitive wage, giving \(L=0.8N\).</li>
+<li>Posting: in the competitive model a binding minimum must reduce employment; under posting it can leave it unchanged or raise it. Complication: posting implies output rises and prices fall, but Harasztosi &amp; Lindner find firms pass minimum-wage costs on as higher prices, which fits a competitive model with inelastic demand. (Or: Horton found hiring fell on an online platform.)</li></ol></div></details></div>
+
+<h4>Question 2 · Bargaining, posting and pay transparency</h4>
+<div class="problem"><div class="q"><span class="eyebrow">Setup</span><p>One firm with \(y=L\) (price 1). Workers \(i\in[0,N]\) with utility \(C-v_i\) if employed, \(v_i\sim U[0,1]\), no other income. Before transparency, wages are Nash-bargained with worker strength \(\beta=0.4\): \(w_i=\beta\cdot\text{MRPL}+(1-\beta)v_i\).</p>
+<ol><li>What wage does a worker with \(v_i\) receive? Who is employed?</li><li>What are the lowest and highest wages paid? The average?</li><li>A pay transparency law forces a single posted wage. What wage, and what employment?</li><li>Summarize the effects of the law on employment, average wages and inequality.</li><li>Cullen &amp; Pakzad-Hurson find right-to-talk laws lowered wages about 2% and didn't change employment. Which predictions match? Why might employment not fall?</li></ol></div>
+<details><summary>Solution</summary><div class="body"><ol>
+<li>\(w_i=0.4+0.6v_i\). This exceeds \(v_i\) for every \(v_i&lt;1\), so <strong>everyone</strong> is employed (efficient).</li>
+<li>Lowest (\(v=0\)): 0.4. Highest (\(v=1\)): 1.0. Average: \(0.4+0.6\cdot E[v]=0.4+0.6(0.5)=0.7\).</li>
+<li>\(L^s=Nw\), \(\eta=1\), so \(w=1\cdot\frac12=0.5\) and \(L=0.5N\).</li>
+<li>Employment falls (N → 0.5N); average wage falls (0.7 → 0.5; check \(\beta/(1+\alpha)=0.4/2=0.2\)); inequality falls from a 0.4–1.0 range to zero. "Equal, lower, fewer."</li>
+<li>Wage fall matches; more inequality compression where unions are weak matches too. Employment doesn't. The model has one firm and an unemployment option. If workers easily switch between firms but rarely in and out of work, transparency lowers wages without changing total employment.</li></ol></div></details></div>
+
+<h4>Question 3 · Markdowns, elasticities and concentration</h4>
+<div class="problem"><div class="q"><span class="eyebrow">Parts</span>
+<ol><li>A firm's recruitment elasticity is 2.5 and its separation elasticity is −1.5. What's the long-run labor supply elasticity? If MRPL is $25/hour, what does a wage-posting firm pay?</li><li>In a survey, 40% of workers are likely to quit with no pay cut and 46% with a 2% pay cut. Implied quit elasticity?</li><li>A city's hospitals have employment shares 0.4, 0.3, 0.2, 0.1. Compute the HHI and the "equivalent number" of hospitals. Then the two smallest merge: new HHI?</li><li>Under wage posting, what does the merger do to wages and employment? Under bargaining? What did Prager &amp; Schmitt find, and which model fits?</li></ol></div>
+<details><summary>Solution</summary><div class="body"><ol>
+<li>"Hires minus quits": \(\eta=2.5-(-1.5)=4\). Wage \(=25\cdot\frac{4}{5}=\$20\).</li>
+<li>\(\frac{0.46-0.40}{0.40}=15\%\) more quits for a −2% wage: elasticity \(=15/(-2)=-7.5\).</li>
+<li>\(0.16+0.09+0.04+0.01=0.30\) (3,000); equivalent ≈ \(1/0.30=3.3\) hospitals. After merging 0.2 and 0.1: \(0.16+0.09+0.09=0.34\) (3,400); ΔHHI \(=2(0.2)(0.1)=0.04\).</li>
+<li>Posting: fewer alternatives lower η, so a bigger markdown; the firm moves down its supply curve: wages <strong>and</strong> employment fall. Bargaining: workers' outside options worsen, so wages fall, but everyone with \(w^r&lt;\) MRPL is still hired: employment unchanged. Prager &amp; Schmitt: big mergers cut skilled wages ≈ 4% and nursing/pharmacy ≈ 7%, with no employment change: <strong>bargaining</strong>.</li></ol></div></details></div>
+
+<h4>Question 4 · Empirics</h4>
+<div class="problem"><div class="q"><span class="eyebrow">4.1</span>Describe a paper that asks whether firms set wages by posting or bargaining. (a) Setting (b) Key findings (c) Which model do the results support, and why?</div>
+<details><summary>Solution</summary><div class="body"><p><strong>Townsend &amp; Allan.</strong> (a) New Zealand migrants on Essential Skills visas tied to one job. (b) Migrants gaining residence (including via random visa lotteries) switch employers more but don't earn more than same-firm coworkers; when an occupation joins the shortage list, freeing all migrants in it, earnings rise ≈ 2.8% for migrants and residents. (c) Posting: under bargaining an individual's better outside option raises their wage; under posting the wage depends on everyone's options via η, so only the market-wide shock matters.</p><p class="small">Also acceptable: Cullen et al.'s negotiation RCT (some bargaining, small average effect), or Prager &amp; Schmitt (bargaining).</p></div></details></div>
+<div class="problem"><div class="q"><span class="eyebrow">4.2</span>Describe a paper that used a difference-in-differences design. (a) Setting (b) Findings (c) What does parallel trends require here, and is it plausible?</div>
+<details><summary>Solution</summary><div class="body"><p><strong>Cengiz, Dube, Lindner &amp; Zipperer.</strong> (a) 138 state minimum-wage increases, 1979–2016. (b) Jobs below the new minimum fall by 1.8% of employment, jobs just above rise by 2.1%: no net job loss; affected wages +6.8%. (c) Employment in each wage bin in raising states would have evolved like in other states absent the increase. Plausible: event studies show flat trends before increases; a worry is that states raise minimums when their labor markets are strong.</p><p class="small">Also good: Prager &amp; Schmitt, Johnson et al., Baker et al., Cullen &amp; Pakzad-Hurson.</p></div></details></div>
+</section>
+<!-- ============ FLASHCARDS ============ -->
+<section class="panel" id="tab-cards" data-panel="cards" hidden>
+<h2>Flashcards</h2>
+<p class="lede">Click or press space to flip; arrow keys move. Filter by category and shuffle. The Interpretation deck practices the last part of each model question.</p>
+<div class="fc-wrap">
+  <div class="fc-controls">
+    <label>Category <select id="fc-cat"><option value="all">All</option><option value="Mnemonics">Mnemonics</option><option value="Models">Models</option><option value="Formulas">Formulas</option><option value="Papers">Papers</option><option value="Designs">Designs</option><option value="Interpretation">Interpretation</option></select></label>
+    <button class="btn ghost" id="fc-shuffle" type="button">Shuffle</button>
+    <span id="fc-count"></span>
+  </div>
+  <div class="fc" id="fc-card" tabindex="0" role="button" aria-label="Flashcard; activate to flip">
+    <span class="side" id="fc-side">Front</span><span class="cat" id="fc-catlbl"></span>
+    <div class="txt" id="fc-txt"></div>
+  </div>
+  <div class="fc-controls">
+    <button class="btn ghost" id="fc-prev" type="button">← Previous</button>
+    <button class="btn" id="fc-flip" type="button">Flip</button>
+    <button class="btn ghost" id="fc-next" type="button">Next →</button>
+  </div>
+</div>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="panel" id="tab-cheat" data-panel="cheat" hidden>
+<h2>Cheat sheet</h2>
+<p class="lede">Everything on one page. Read it Monday morning and Thursday at 11.</p>
+<div class="cheat">
+<div class="card"><h4>Markdown (L6, L7)</h4>
+<p>\[\max_w\ p\,y(L^s(w))-wL^s(w)\Rightarrow w=\text{MRPL}\cdot\frac{1}{1+1/\eta}=\text{MRPL}\cdot\frac{\eta}{1+\eta}\].</p>
+<p>Why: one more worker means a raise for everyone, so marginal cost = \(w(1+1/\eta)\).</p>
+<p>η = 0.1 → 9% · 1 → 50% · 4 → 80% · 4.6 → 82% · 9 → 90% · ∞ → 100%.</p>
+<p>Reverse: \(s=w/\text{MRPL}\Rightarrow\eta=s/(1-s)\).</p></div>
+
+<div class="card"><h4>Elasticities</h4>
+<p>\(\eta=\frac{\partial\log L}{\partial\log w}\). \(L=Nw^\alpha\Rightarrow\eta=\alpha\). \(L=N(w-c)\Rightarrow\eta=\frac{w}{w-c}\).</p>
+<p>Long run: \(L=R/S\Rightarrow\eta=\varepsilon_R-\varepsilon_S\) ("hires minus quits"). Datta 3 + 1.6 = 4.6.</p>
+<p>Regression: \(\varepsilon_S=\text{coef}/\text{mean rate}\) (−0.08/0.05).</p>
+<p>Survey: \(\frac{p_1-p_0}{p_0}\div(-\text{cut})\): 47% → 51% at −1% = −8.5.</p>
+<p>OLS fails: supply shocks trace demand. Need an instrument: demand shock or institutional wage change.</p></div>
+
+<div class="card"><h4>Sources of monopsony: "Picky, Blind, Few"</h4>
+<p>Picky: heterogeneous preferences (Mas &amp; Pallais). Blind: search frictions (≈14 applications, ≈2 interviews; networks). Few: concentration, \(\text{HHI}=\sum s^2\), \(1/N\) if equal, merger \(\Delta=2s_as_b\).</p></div>
+
+<div class="card"><h4>Full posting model (practice Q)</h4>
+<p>\(L^s=Nw^\eta\), \(y=AL^\rho\), MRPL \(=\rho AL^{\rho-1}\).</p>
+<p>Competitive: \(w^{1+\eta-\eta\rho}=\rho AN^{\rho-1}\).</p>
+<p>Posting: same with \(A\to A\frac{\eta}{1+\eta}\) ("competition with a shrunk A").</p>
+<p>CRS (\(y=AL\)): \(w_{comp}=A\), \(w_{post}=A\frac{\eta}{1+\eta}\).</p></div>
+
+<div class="card"><h4>Bargaining · "EIS"</h4>
+<p>L7: \(w_i=w^r_i\). L8 Nash: \(w_i=\beta\,\text{MRPL}+(1-\beta)w^r_i\). Hired iff \(w^r_i&lt;\) MRPL (efficient).</p>
+<p>\(F=x^\alpha\): \(E[v]=\frac{\alpha}{1+\alpha}\) = posted wage (HW3 Q1e).</p>
+<p><strong>E</strong>mployment: posting too low, bargaining efficient. <strong>I</strong>nequality: posting one wage. <strong>S</strong>pillovers: posting wage depends on everyone's options.</p></div>
+
+<div class="card"><h4>Minimum wage: "between the wages, jobs go up"</h4>
+<p>\(\underline w\le w_{post}\): nothing. \(w_{post}&lt;\underline w\le w_{comp}\): posting \(L=L^s(\underline w)\) ↑; competitive unchanged. \(\underline w&gt;w_{comp}\): both \(\text{MRPL}(L)=\underline w\), ↓. Peak at \(w_{comp}\). CRS: any \(\underline w&gt;A\) shuts the firm.</p></div>
+
+<div class="card"><h4>Pay transparency: "equal, lower, fewer"</h4>
+<p>Before: avg \(\beta+(1-\beta)\frac{\alpha}{1+\alpha}\), all employed. After (posting): \(\frac{\alpha}{1+\alpha}\), employment \((\frac{\alpha}{1+\alpha})^\alpha\). Fall \(=\frac{\beta}{1+\alpha}\).</p></div>
+
+<div class="card"><h4>Groups (HW3 Q2)</h4>
+<p>Separate: \(w_g=\text{MRPL}\frac{\eta_g}{1+\eta_g}\) (10 → 8 men, 6.67 women). One wage: \(\eta=\sum s_g\eta_g\) (0.5/0.5 → η = 3, w = 7.5; 0.1 men → 2.2, 6.875).</p></div>
+
+<div class="card"><h4>Noncompetes: "cage versus comp"</h4>
+<p>Cage: fewer outside options, wages ↓. Comp: compensating differential, wages ↑. Data: cage wins (Johnson et al. −11%); workers don't notice hidden clauses (Cowgill et al.).</p></div>
+
+<div class="card"><h4>Designs</h4>
+<p><strong>RCT</strong>: random assignment, no spillovers (Horton, Cullen et al., Cowgill et al.). <strong>IV</strong>: relevance, as good as random, exclusion, monotonicity; β = reduced form ÷ first stage (Datta, Staiger, Caldwell &amp; Oehlsen, lottery). <strong>DiD</strong>: parallel trends, check pre-trends (Prager &amp; Schmitt, Cengiz, Johnson, Baker, Cullen &amp; P-H). <strong>RD</strong>: none this unit.</p></div>
+
+<div class="card"><h4>Papers in one line</h4><ul style="margin:0">
+<li>Staiger: IV, η ≈ 0.1, exclusion fails (rivals' wages rose).</li>
+<li>Datta: IV, η ≈ 4.6, 80% of MRPL.</li>
+<li>Caldwell &amp; Oehlsen: Lyft access ~doubles η, markdown 68% → 50%.</li>
+<li>Prager &amp; Schmitt: big mergers −4% skilled, −7% nurses, jobs flat → bargaining.</li>
+<li>Cullen et al.: nudge → +7pp negotiate → +1% wages.</li>
+<li>Townsend &amp; Allan: own option no raise, market +2.8% → posting.</li>
+<li>Horton: floors → hiring −6%, better workers.</li>
+<li>Cengiz: missing below = excess above.</li>
+<li>Johnson et al.: enforceable → −11%.</li>
+<li>Cowgill et al.: salient scares, bites after reminder.</li>
+<li>Baker: gap −2pp, men's pay fell.</li>
+<li>Cullen &amp; P-H: wages −2%, jobs flat.</li></ul></div>
+</div>
+</section>
+</div></main>
+
+<script>
+(function(){
+  var store={get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('nav.tabs button[data-tab]'));
+  var panels=Array.prototype.slice.call(document.querySelectorAll('section.panel[data-panel]'));
+  function typeset(el){if(window.MathJax&&MathJax.typesetPromise&&el){MathJax.typesetPromise([el]).catch(function(){});}}
+  function show(name,push){
+    var found=false;
+    panels.forEach(function(p){var on=p.getAttribute('data-panel')===name;p.hidden=!on;if(on)found=true;});
+    if(!found){name='plan';panels.forEach(function(p){p.hidden=p.getAttribute('data-panel')!=='plan';});}
+    tabs.forEach(function(b){b.setAttribute('aria-selected',b.getAttribute('data-tab')===name?'true':'false');});
+    if(push){try{history.replaceState(null,'','#'+name);}catch(e){}}
+    store.set('e151m2-tab',name);
+    window.scrollTo(0,0);
+    typeset(document.getElementById('tab-'+name));
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-tab'),true);});});
+  var initial=(location.hash||'').replace('#','');
+  if(!initial)initial=store.get('e151m2-tab','plan');
+  show(initial,false);
+  window.addEventListener('hashchange',function(){var h=(location.hash||'').replace('#','');if(h)show(h,false);});
+
+  var blocks=Array.prototype.slice.call(document.querySelectorAll('input[data-block]'));
+  var knows=Array.prototype.slice.call(document.querySelectorAll('input[data-know]'));
+  var saved=store.get('e151m2-done',{});
+  function refresh(){
+    var n=0;blocks.forEach(function(c){if(c.checked)n++;c.closest('.block').classList.toggle('done',c.checked);});
+    var pctDone=blocks.length?Math.round(100*n/blocks.length):0;
+    document.getElementById('progress-bar').style.width=pctDone+'%';
+    var k=0;knows.forEach(function(c){if(c.checked)k++;});
+    document.getElementById('progress-text').textContent=n+' of '+blocks.length+' blocks done · '+k+' of '+knows.length+' papers ready';
+  }
+  blocks.concat(knows).forEach(function(c){
+    var key=c.getAttribute('data-block')?'b:'+c.getAttribute('data-block'):'k:'+c.getAttribute('data-know');
+    c.checked=!!saved[key];
+    c.addEventListener('change',function(){saved[key]=c.checked;store.set('e151m2-done',saved);refresh();});
+  });
+  refresh();
+
+  var CARDS=[
+    {c:'Mnemonics',f:'"Eta over eta-plus-one…"',b:'"…is the slice you keep." \\(w=\\text{MRPL}\\cdot\\frac{\\eta}{1+\\eta}\\).'},
+    {c:'Mnemonics',f:'"Cross at the top, read the wage at the bottom."',b:'Posting graph: hire where marginal cost meets MRPL, then pay the wage the supply curve requires at that employment.'},
+    {c:'Mnemonics',f:'"Posting is competition with a shrunk A."',b:'With constant η, solve the competitive equilibrium with \\(A\\) replaced by \\(A\\frac{\\eta}{1+\\eta}\\).'},
+    {c:'Mnemonics',f:'"EIS"',b:'How posting and bargaining differ: Employment (posting too low, bargaining efficient), Inequality (bargaining unequal), Spillovers (posting wage depends on everyone\'s options).'},
+    {c:'Mnemonics',f:'"Between the wages, jobs go up."',b:'Under posting, a minimum wage between the posted and competitive wage raises employment; above the competitive wage it lowers it. Peak at the competitive wage.'},
+    {c:'Mnemonics',f:'"Equal, lower, fewer."',b:'Pay transparency turns bargaining into posting: no inequality, lower average wage (if β &gt; 0), lower employment (in the one-firm model).'},
+    {c:'Mnemonics',f:'"Picky, Blind, Few."',b:'Sources of monopsony: heterogeneous preferences, search frictions, concentration.'},
+    {c:'Mnemonics',f:'"Hires minus quits."',b:'Long-run elasticity = recruitment elasticity − separation elasticity (\\(L=R/S\\)).'},
+    {c:'Mnemonics',f:'"Cage versus comp."',b:'Noncompetes: shrink outside options (wages ↓) vs compensating differential (wages ↑). Evidence: cage wins.'},
+    {c:'Mnemonics',f:'"Me alone: no raise. All of us: raise."',b:'Townsend &amp; Allan: individual outside options don\'t raise wages; market-wide ones do → posting.'},
+    {c:'Models',f:'Why does a posting firm pay less than MRPL?',b:'To hire one more worker it must raise the wage for everyone it already employs, so its marginal cost of labor is \\(w(1+1/\\eta)&gt;w\\). It hires until that equals MRPL, and pays only the supply-curve wage.'},
+    {c:'Models',f:'Why is bargaining (L7 protocol) efficient?',b:'Each worker is paid separately, so hiring one more doesn\'t raise anyone else\'s pay. Marginal cost = that worker\'s reservation wage, so everyone with \\(w^r&lt;\\) MRPL is hired.'},
+    {c:'Models',f:'Under posting, why can a minimum wage raise employment?',b:'With a floor the firm pays \\(\\underline w\\) to everyone anyway, so an extra worker costs just \\(\\underline w\\): marginal cost becomes flat. It hires along the supply curve while MRPL ≥ \\(\\underline w\\).'},
+    {c:'Models',f:'Minimum wage above the competitive wage: employment in each model?',b:'Both: on the demand curve, \\(\\text{MRPL}(L)=\\underline w\\). Higher floor, fewer jobs. With CRS (MRPL = A), any floor above A means zero employment.'},
+    {c:'Models',f:'Why might noncompetes lower wages? Raise them?',b:'Lower: they shrink outside options and reservation wages (posting and bargaining both pass this into lower wages). Raise: workers anticipating lost future earnings demand a compensating differential.'},
+    {c:'Models',f:'How does the L8 model represent pay transparency?',b:'As a shift from individual (Nash) bargaining to wage posting: if workers see coworkers\' pay they demand it, or inequality hurts morale (Breza, Kaur &amp; Shamdasani).'},
+    {c:'Formulas',f:'Posting FOC in terms of η.',b:'\\(p\\,y\'L^{s\\prime}-wL^{s\\prime}-L=0\\Rightarrow p\\,y\'=w(1+1/\\eta)\\Rightarrow w=p\\,y\'\\frac{1}{1+1/\\eta}\\).'},
+    {c:'Formulas',f:'Supply and η when \\(P[v_i\\le x]=x^\\alpha\\) and workers earn nothing otherwise.',b:'\\(L^s=Nw^\\alpha\\), \\(\\eta=\\alpha\\) (constant).'},
+    {c:'Formulas',f:'Competitive and posted wage with \\(L^s=Nw^\\eta\\), \\(y=AL^\\rho\\).',b:'Competitive: \\(w^{1+\\eta-\\eta\\rho}=\\rho AN^{\\rho-1}\\). Posting: \\(w^{1+\\eta-\\eta\\rho}=\\frac{\\eta}{1+\\eta}\\rho AN^{\\rho-1}\\).'},
+    {c:'Formulas',f:'Average Nash-bargained wage with \\(F=x^\\alpha\\), MRPL = 1.',b:'\\(\\beta+(1-\\beta)\\frac{\\alpha}{1+\\alpha}\\). Posted wage \\(\\frac{\\alpha}{1+\\alpha}\\). Difference \\(\\frac{\\beta}{1+\\alpha}\\).'},
+    {c:'Formulas',f:'Common-wage elasticity for two groups.',b:'\\(\\eta=s_1\\eta_1+s_2\\eta_2\\), from \\(L=L_1+L_2\\).'},
+    {c:'Formulas',f:'HHI, equivalent firms, merger change.',b:'\\(\\sum s_f^2\\); \\(1/\\text{HHI}\\); merging \\(s_a,s_b\\) adds \\(2s_as_b\\).'},
+    {c:'Formulas',f:'HW3 Q1: posting employment for α = 0.5, 1, 2.',b:'\\(N(\\frac{\\alpha}{1+\\alpha})^\\alpha\\): 0.577N, 0.5N, 0.444N. Falls as α rises because α also shifts the whole distribution of distaste toward 1.'},
+    {c:'Papers',f:'VA nurses (Staiger et al.): design, finding, problem.',b:'IV from the 1990 Nurse Pay Act; η ≈ 0.1 (9% of MRPL). Exclusion doubtful: competitors\' wages rose too; very short run.'},
+    {c:'Papers',f:'Datta: instruments and numbers.',b:'Living-wage accreditation of council contracts; whether the posted wage showed the 12.07% holiday top-up (HR quirk). Recruit ≈ 3, separate ≈ −1.6, η ≈ 4.6 → 80% of MRPL.'},
+    {c:'Papers',f:'Caldwell &amp; Oehlsen: design and findings.',b:'Uber\'s randomized pay offers as IV for earnings. Lyft access nearly doubles η to Uber; markdown 68% → ≈50%. Women twice as elastic to the market, not less elastic to the employer.'},
+    {c:'Papers',f:'Prager &amp; Schmitt: design and findings.',b:'DiD, one-merger vs no-merger commuting zones, 2000–10. Top-ΔHHI mergers: skilled −4%, nursing/pharmacy −7%, unskilled 0, employment flat → bargaining.'},
+    {c:'Papers',f:'Cullen, Pakzad-Hurson &amp; Perez-Truglia: what and what found?',b:'RCT on levels.fyi job seekers: info that 42% negotiate and 85% succeed. Negotiated +7.3pp, about half got more (+13.9%), average wages ≈ +1%. Coaching: no effect.'},
+    {c:'Papers',f:'Townsend &amp; Allan: two tests and results.',b:'Individual: residence (incl. random lotteries) → more employer switching, no earnings gain. Market: occupation added to shortage list (DiD) → earnings +2.8% for migrants and residents. → Posting.'},
+    {c:'Papers',f:'Horton: design and findings.',b:'Online platform randomized minimum bids ($2/$3/$4) across firms. Hiring ≈ −6%, ≈10% of naive prediction; hours −25%; firms switched to more productive workers.'},
+    {c:'Papers',f:'Cengiz et al.: design and finding.',b:'Bunching DiD on 138 state increases: missing jobs below (−1.8%) ≈ excess jobs above (+2.1%), no net loss; affected wages +6.8%. → Posting (caveat: price pass-through).'},
+    {c:'Papers',f:'Johnson, Lavetti &amp; Lipsitz: design and finding.',b:'0–1 state-year enforceability score from court rulings; DiD. Fully enforceable → earnings ≈ −11%, less mobility, more for educated and high-use industries.'},
+    {c:'Papers',f:'Cowgill, Freiberg &amp; Starr: design and findings.',b:'Field experiment: random wage ($25/$65) and salient/hidden/no noncompete. Salient deters signing (≈ $15–44 equivalent), hidden barely; reduces moves to Firm B only after reminder; secret-sharing rare.'},
+    {c:'Papers',f:'Baker et al.: design and finding.',b:'Canadian university salary disclosure laws; staggered DiD vs lower-paid departments. Gender gap −1.2 to −2pp, mostly because men\'s pay fell.'},
+    {c:'Papers',f:'Cullen &amp; Pakzad-Hurson: design and findings.',b:'13 right-to-talk laws, event-study DiD. Wages −2% for men and women, more where unions are weak; employment unchanged.'},
+    {c:'Designs',f:'Why can\'t OLS of log employment on log wage give the supply elasticity facing a firm?',b:'Wage variation from supply shocks traces out demand, not supply. Need an instrument that shifts the wage without shifting supply: a demand shock or institutional wage change.'},
+    {c:'Designs',f:'Four IV assumptions.',b:'Relevance, as good as random, exclusion, monotonicity. Gives a LATE for compliers. β = reduced form ÷ first stage.'},
+    {c:'Designs',f:'Parallel trends in Cengiz et al.',b:'Employment in each wage bin in states raising the minimum would have evolved like that bin in other states.'},
+    {c:'Designs',f:'Assumption for Townsend &amp; Allan\'s shortage-list DiD.',b:'Changes to the list are independent of changes in occupation demand and supply. Policymakers do respond to shocks; some changes were for other reasons (e.g. size). Australian controls show no change.'},
+    {c:'Designs',f:'Which Midterm 2 papers use RD?',b:'None. If asked for an RD paper, use Clark &amp; Martorell or Gaggl &amp; Wright from Midterm 1.'},
+    {c:'Interpretation',f:'Wages fell after mergers but employment didn\'t. Which model?',b:'Bargaining. Under posting, more power means moving down the supply curve, so employment falls too.'},
+    {c:'Interpretation',f:'Is Cengiz et al. more consistent with competition or posting?',b:'Posting: no job loss. Caveat: posting predicts lower prices, but firms raise prices (Harasztosi &amp; Lindner).'},
+    {c:'Interpretation',f:'Transparency model predicts employment falls. Cullen &amp; P-H find it doesn\'t. Why?',b:'The model has one firm and an unemployment option. If workers switch easily between firms but rarely between work and non-work, employment needn\'t fall.'},
+    {c:'Interpretation',f:'Why don\'t noncompetes come with higher pay?',b:'Workers often don\'t notice them (hidden clauses had little effect); the cage effect dominates.'},
+    {c:'Interpretation',f:'Is Staiger\'s η ≈ 0.1 believable?',b:'Probably biased down: nurses at 9% of MRPL is implausible; the mandate raised rivals\' wages too, and two years is short run.'},
+    {c:'Interpretation',f:'Does pay dispersion within a firm reject the posting model?',b:'Not necessarily: workers may be doing different jobs or have different productivity.'},
+    {c:'Interpretation',f:'Why don\'t firms bargain more?',b:'Our protocol (firm gets all surplus) is the best case for firms; firms don\'t know reservation wages; pay inequality lowers productivity (Breza, Kaur &amp; Shamdasani).'},
+    {c:'Interpretation',f:'HW3 Q3c: is the gender gap due to different markdowns?',b:'Caldwell &amp; Oehlsen: women not less elastic to their employer, so no: different markdowns don\'t explain it there.'}
+  ];
+  var deck=CARDS.slice(),idx=0,back=false;
+  var elCard=document.getElementById('fc-card'),elTxt=document.getElementById('fc-txt'),elSide=document.getElementById('fc-side'),elCat=document.getElementById('fc-catlbl'),elCount=document.getElementById('fc-count'),sel=document.getElementById('fc-cat');
+  function render(){
+    if(!deck.length){elTxt.textContent='No cards in this category.';elCount.textContent='';return;}
+    var c=deck[idx];
+    elTxt.innerHTML=back?c.b:c.f;elTxt.className='txt'+(back?' back':'');
+    elSide.textContent=back?'Back':'Front';elCat.textContent=c.c;
+    elCount.textContent=(idx+1)+' / '+deck.length;
+    typeset(elCard);
+  }
+  function build(){var cat=sel.value;deck=CARDS.filter(function(c){return cat==='all'||c.c===cat;});idx=0;back=false;render();}
+  function flip(){back=!back;render();}
+  function next(){if(!deck.length)return;idx=(idx+1)%deck.length;back=false;render();}
+  function prev(){if(!deck.length)return;idx=(idx-1+deck.length)%deck.length;back=false;render();}
+  function shuffle(){for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=deck[i];deck[i]=deck[j];deck[j]=t;}idx=0;back=false;render();}
+  sel.addEventListener('change',build);
+  document.getElementById('fc-shuffle').addEventListener('click',shuffle);
+  document.getElementById('fc-flip').addEventListener('click',flip);
+  document.getElementById('fc-next').addEventListener('click',next);
+  document.getElementById('fc-prev').addEventListener('click',prev);
+  elCard.addEventListener('click',flip);
+  elCard.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();flip();}else if(e.key==='ArrowRight'){next();}else if(e.key==='ArrowLeft'){prev();}});
+  build();
+})();
+</script>
+</body>
+</html>
